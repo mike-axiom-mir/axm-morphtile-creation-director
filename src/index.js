@@ -3,6 +3,32 @@
 const { assertRequest, result } = require("./envelope");
 const MACHINE = { id: "axm.morphtile.creation-director", version: "0.1.0" };
 const ORDER = ["form", "surface", "capability", "interface", "assembly", "verification"];
+const CHILD_STATUSES = new Set(["CANDIDATE", "PASS", "HOLD", "FAIL"]);
+
+function summarizeRoute(route) {
+  let status = "CANDIDATE";
+  const holds = [];
+
+  for (const entry of route) {
+    const childStatus = entry && entry.response && entry.response.status;
+
+    if (!CHILD_STATUSES.has(childStatus)) {
+      holds.push({
+        code: "HOLD_MACHINE_RESPONSE_INVALID",
+        kind: entry.kind,
+        machine: entry.machine,
+        observed_status: childStatus === undefined ? null : childStatus
+      });
+      if (status !== "FAIL") status = "HOLD";
+      continue;
+    }
+
+    if (childStatus === "FAIL") status = "FAIL";
+    else if (childStatus === "HOLD" && status !== "FAIL") status = "HOLD";
+  }
+
+  return { status, holds };
+}
 
 function run(request, registry = {}) {
   assertRequest(request);
@@ -16,10 +42,16 @@ function run(request, registry = {}) {
     route.push({ kind: task.kind, machine: machine.id, response: machine.run(task.packet) });
   }
   route.sort((a, b) => ORDER.indexOf(a.kind) - ORDER.indexOf(b.kind));
-  return result(request, MACHINE, "CANDIDATE", {
+
+  const summary = summarizeRoute(route);
+  return result(request, MACHINE, summary.status, {
     candidate: { schema: "axm.morphtile.director-report/v0.1", goal: request.goal, route },
-    evidence: [{ kind: "ROUTING", status: "PASS", check: "explicit registry only; no private chat state" }]
+    holds: summary.holds,
+    evidence: [
+      { kind: "ROUTING", status: "PASS", check: "explicit registry only; no private chat state" },
+      { kind: "CHILD_STATUS_PROPAGATION", status: summary.status === "CANDIDATE" ? "PASS" : summary.status, check: "FAIL > HOLD > CANDIDATE/PASS; invalid child status => HOLD" }
+    ]
   });
 }
 
-module.exports = { MACHINE, ORDER, run };
+module.exports = { MACHINE, ORDER, summarizeRoute, run };
