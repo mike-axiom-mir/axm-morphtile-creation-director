@@ -16,4 +16,3 @@ Deterministic routing and missing-machine HOLD tests.
 No real sibling invocation, decomposition model, assembly, or verification execution yet.
 
 No claim of autonomous creation, production readiness, canon, or visual quality is made.
-
