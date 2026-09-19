@@ -1,0 +1,707 @@
+AXM / MORPHTILE — CODEX PLATFORM FOUNDATION PASS
+START THE CREATION-MACHINE REPOSITORIES
+Mike — Axiom/Mir
+Date: 2026-09-19
+
+MISSION
+
+Prepare the clean GitHub foundations for the MorphTile creation-machine ecosystem BEFORE the deeper local specialist run begins.
+
+This is a FOUNDATION PASS, not an excuse to invent seven giant systems.
+
+The later local specialist teams need clean repositories, explicit boundaries, compatible contracts, tests, honest status files and obvious places to work.
+
+PRIMARY SUBSTRATE
+MorphTile is the substrate.
+
+Use the latest canonical MorphTile repository/version on GitHub as the source of truth.
+Inspect it before designing integrations.
+
+Current known checkpoint entering this pass:
+- MorphTile v0.4 handoff exists.
+- Preserve whatever newer verified GitHub state exists when this task begins.
+- Do not silently replace newer good work with this note.
+
+ROOT ARCHITECTURE
+
+MorphTile core should understand/run ordinary MorphTile matter.
+
+Creation machines sit NEXT TO MorphTile.
+
+Rule:
+
+IF A COMPONENT IS REQUIRED TO UNDERSTAND OR RUN ORDINARY MORPHTILE MATTER:
+    it belongs in MorphTile core.
+
+IF A COMPONENT HELPS INVENT, CREATE, IMPROVE, ASSEMBLE OR VERIFY MORPHTILE MATTER:
+    it belongs in a creation machine.
+
+Dependency direction:
+
+    machines ---> MorphTile public contracts
+
+NOT:
+
+    MorphTile ---> official AXM machines
+
+MorphTile must remain usable without any AXM creation machine installed.
+
+Third parties must eventually be able to build compatible machines without becoming part of AXM or modifying MorphTile core.
+
+============================================================
+REPOSITORIES
+============================================================
+
+1.
+axm-morphtile-machine-form
+
+Purpose:
+Form / geometry creation.
+
+2.
+axm-morphtile-machine-surface
+
+Purpose:
+Surface / skin / material / procedural painting creation.
+
+3.
+axm-morphtile-machine-capability
+
+Purpose:
+Behavior / logic / state / signals / sleeping-capability creation.
+
+4.
+axm-morphtile-machine-interface
+
+Purpose:
+Interface / presentation creation over canonical MorphTile matter.
+
+5.
+axm-morphtile-machine-assembly
+
+Purpose:
+Combine compatible machine outputs into complete MorphTile tiles/kits while preserving dependencies and provenance.
+
+6.
+axm-morphtile-machine-verification
+
+Purpose:
+Adversarially verify candidate MorphTile matter and produce evidence/HOLD results.
+
+7.
+axm-morphtile-creation-director
+
+Purpose:
+Goal decomposition and orchestration across compatible machines.
+
+============================================================
+DO NOT BUILD A SHARED PROTOCOL REPOSITORY YET
+============================================================
+
+Do not create an eighth "machine protocol" repository during this foundation pass.
+
+We do want machine interoperability.
+
+But first let the initial real machines expose the smallest contract they actually share.
+
+For now:
+- document the provisional contract in each repo;
+- keep it intentionally tiny;
+- use matching conformance fixtures where useful;
+- avoid machine-specific assumptions in the shared envelope.
+
+After multiple machines genuinely use the same contract, it can be extracted into its own package/repo if evidence supports that move.
+
+============================================================
+COMMON PRINCIPLES FOR ALL SEVEN REPOS
+============================================================
+
+Each repo should begin with:
+
+README.md
+LICENSE or an explicit LICENSE_DECISION.md if licensing is not yet settled
+STATUS.md
+ARCHITECTURE.md
+INTEGRATION.md
+ROADMAP.md
+CHANGELOG.md
+tests/ or equivalent test location
+fixtures/ or examples/ where useful
+machine-readable manifest if appropriate
+
+Also include a small truth-boundary section.
+
+Do not write marketing claims as implementation facts.
+
+Use explicit states such as:
+- PLANNED
+- IMPLEMENTED
+- TESTED
+- STRUCTURALLY VERIFIED
+- VISUALLY VERIFIED
+- EXPERIMENTAL
+- HELD
+- NOT TESTED
+
+Each repo README should answer immediately:
+
+1. What does this machine do?
+2. What does it NOT own?
+3. What does it accept?
+4. What does it produce?
+5. How does it interact with MorphTile?
+6. What evidence accompanies output?
+7. What happens when it cannot satisfy a request?
+
+============================================================
+PROVISIONAL MACHINE ENVELOPE
+============================================================
+
+Do not overdesign this.
+
+Use a minimal provisional concept approximately like:
+
+REQUEST
+- request id
+- goal / intent
+- input MorphTile matter or references when needed
+- constraints
+- available vocabulary/capabilities
+- budget
+- caller/provenance
+
+RESULT
+- request id
+- machine id/version
+- status
+- candidate output
+- dependencies
+- evidence
+- warnings/HOLDs
+- provenance
+- optional suggested missing capability
+
+Important:
+Candidate output is NOT automatically canonical.
+
+Machine output should be suitable for MorphTile's existing safety path:
+clone -> plan -> commit -> receipt -> rollback
+
+A machine must be allowed to answer:
+HOLD / CANNOT SATISFY / MISSING CAPABILITY
+
+Never force fabricated output merely to return success.
+
+============================================================
+REPO 1 — FORM / GEOMETRY MACHINE
+============================================================
+
+Repository:
+axm-morphtile-machine-form
+
+FOUNDATION PURPOSE
+
+Turn bounded shape/form intent into valid candidate MorphTile geometry matter.
+
+It should eventually be able to use:
+- primitives;
+- recipe geometry;
+- loops;
+- conditions;
+- expressions;
+- world-defined words;
+- shared definitions;
+- composition of existing forms;
+- reusable parameters.
+
+It does NOT own:
+- canonical world state;
+- final aesthetic acceptance;
+- material quality;
+- game logic;
+- UI;
+- merge authority.
+
+FIRST FOUNDATION WORK
+
+Create:
+- manifest/identity;
+- request/result schema or documented provisional envelope;
+- adapter boundary to MorphTile;
+- simple fixture requests;
+- tests proving outputs are candidate data, not direct world mutation;
+- one trivial proof candidate using existing MorphTile vocabulary;
+- explicit TODO lane for gap discovery/forging.
+
+Do not pretend autonomous arbitrary geometry generation is solved.
+
+============================================================
+REPO 2 — SURFACE / SKIN MACHINE
+============================================================
+
+Repository:
+axm-morphtile-machine-surface
+
+FOUNDATION PURPOSE
+
+Create candidate MorphTile material/surface matter.
+
+It should eventually use:
+- material facets;
+- procedural painting;
+- position inputs;
+- surface direction / normals;
+- world-defined words;
+- parameters;
+- verified external material offers/bridges where supported.
+
+It does NOT own:
+- geometry topology;
+- canonical world state;
+- automatic aesthetic truth;
+- final merge authority.
+
+Separate:
+TECHNICALLY VALID
+from
+VISUALLY GOOD.
+
+FIRST FOUNDATION WORK
+
+Create:
+- machine manifest;
+- provisional request/result envelope;
+- MorphTile material adapter;
+- procedural-paint fixtures;
+- normal/up-facing surface fixture;
+- evidence fields for structural vs visual verification;
+- HOLD behavior for unsupported material dependencies.
+
+============================================================
+REPO 3 — CAPABILITY MACHINE
+============================================================
+
+Repository:
+axm-morphtile-machine-capability
+
+FOUNDATION PURPOSE
+
+Create what MorphTile matter can DO.
+
+Eventually compose:
+- logic;
+- variables/state;
+- rules;
+- signals;
+- behaviors;
+- parameters;
+- controls;
+- sleeping capabilities;
+- wake rules;
+- shared definitions;
+- world-defined words.
+
+It does NOT own:
+- UI presentation;
+- canonical merge authority;
+- unrestricted host permissions;
+- hidden runtime code outside MorphTile contracts.
+
+FIRST FOUNDATION WORK
+
+Create:
+- machine manifest;
+- request/result envelope;
+- candidate capability builder;
+- fixtures for one stateful signal behavior;
+- fixture for one sleeping capability;
+- deterministic/replay-oriented tests;
+- HOLD behavior for a capability MorphTile cannot currently express.
+
+============================================================
+REPO 4 — INTERFACE MACHINE
+============================================================
+
+Repository:
+axm-morphtile-machine-interface
+
+FOUNDATION PURPOSE
+
+Create interface/presentation matter over canonical MorphTile matter.
+
+Preserve:
+INTERFACE IS MATTER.
+STATE REMAINS CANONICAL.
+
+Eventually create:
+- tile-owned views;
+- controls bound to real state/capabilities;
+- movable/dockable/world-attached presentation descriptions;
+- host-adaptable presentation;
+- safe website/UI forms.
+
+It does NOT own:
+- a second copy of application/world state;
+- arbitrary filesystem/network/payment/device authority;
+- personal session/camera state unless explicitly persisted by the world.
+
+FIRST FOUNDATION WORK
+
+Create:
+- machine manifest;
+- request/result envelope;
+- adapter for current MorphTile `view` matter;
+- one fixture that displays canonical state;
+- one fixture that invokes an explicitly exposed action;
+- test proving the view does not create duplicate authoritative state;
+- explicit future lane for presentation placement.
+
+============================================================
+REPO 5 — ASSEMBLY MACHINE
+============================================================
+
+Repository:
+axm-morphtile-machine-assembly
+
+FOUNDATION PURPOSE
+
+Combine compatible candidate outputs into complete MorphTile matter.
+
+Inputs may eventually come from:
+- Form Machine;
+- Surface Machine;
+- Capability Machine;
+- Interface Machine;
+- third-party compatible machines.
+
+Assembly must preserve:
+- dependencies;
+- words;
+- definitions;
+- provenance;
+- parameters;
+- capabilities;
+- interfaces;
+- HOLDs/conflicts.
+
+It does NOT own:
+- permission to silently overwrite dependency conflicts;
+- automatic merge into canonical worlds;
+- aesthetic acceptance.
+
+FIRST FOUNDATION WORK
+
+Create:
+- machine manifest;
+- request/result envelope;
+- fixtures representing outputs from the other machines;
+- deterministic assembly path;
+- dependency/conflict report;
+- output as valid MorphTile candidate tile/kit;
+- tests for conflict/HOLD behavior;
+- test that input candidates remain independently inspectable.
+
+============================================================
+REPO 6 — VERIFICATION MACHINE
+============================================================
+
+Repository:
+axm-morphtile-machine-verification
+
+FOUNDATION PURPOSE
+
+Challenge candidate MorphTile matter.
+
+This machine must be independent enough to disagree with creators.
+
+Possible verification lanes:
+- schema validity;
+- deterministic replay;
+- recipe budgets;
+- state behavior;
+- signals;
+- sleep/wake;
+- dependency closure;
+- kit hashes;
+- export/import;
+- collapse/expand;
+- rollback;
+- portability;
+- performance;
+- visual evidence.
+
+It does NOT own:
+- redefining failed work as success;
+- automatic aesthetic judgment without an actual observer/evidence path;
+- silently repairing a candidate and then claiming the original passed.
+
+FIRST FOUNDATION WORK
+
+Create:
+- verification manifest;
+- verification-result schema;
+- PASS / HOLD / FAIL semantics;
+- several known-good fixtures;
+- several intentionally broken fixtures;
+- test that broken candidates are rejected/held for the correct reason;
+- evidence receipt format.
+
+This repo should become increasingly adversarial over time.
+
+============================================================
+REPO 7 — CREATION DIRECTOR
+============================================================
+
+Repository:
+axm-morphtile-creation-director
+
+FOUNDATION PURPOSE
+
+Coordinate goals across machines.
+
+The Director does NOT need to know how to generate every artifact itself.
+
+It should eventually:
+
+GOAL
+-> inspect existing MorphTile vocabulary/LEGO
+-> decompose work
+-> choose compatible machines
+-> route bounded requests
+-> gather candidate outputs
+-> send them to Assembly
+-> send result to Verification
+-> return verified candidate OR explicit HOLD/gap
+
+Example:
+
+"Make a tropical resort reception desk with storage interaction."
+
+Possible decomposition:
+
+Form
+-> desk geometry
+
+Surface
+-> wood / paint / wear
+
+Capability
+-> storage / open / close
+
+Interface
+-> storage presentation
+
+Assembly
+-> complete tile/kit
+
+Verification
+-> evidence
+
+The Director does NOT own:
+- automatic canon;
+- silent merge;
+- permission to bypass verification;
+- permission to fabricate missing capabilities.
+
+FIRST FOUNDATION WORK
+
+Create:
+- director manifest;
+- machine discovery/registry concept;
+- bounded goal/task packet;
+- simple deterministic routing proof using fixture machines;
+- no dependency on private chat history;
+- explicit HOLD for missing machine/capability;
+- final handoff/report format.
+
+============================================================
+THIRD-PARTY COMPATIBILITY
+============================================================
+
+This is a first-class architectural goal.
+
+Official AXM machines must NOT receive secret privileges required to make valid MorphTile matter.
+
+Long-term desired shape:
+
+third-party machine
+    -> valid candidate MorphTile matter
+    -> standard verification
+    -> normal MorphTile safety/merge path
+    -> works
+
+If a third party invents a better geometry, animation, interface, CAD, audio, physics or other creation machine, that should expand what people can create with MorphTile rather than require us to absorb their implementation into MorphTile core.
+
+MorphTile owns/defines the interoperable matter contracts.
+AXM does not need to own every producer.
+
+============================================================
+REPOSITORY ISOLATION
+============================================================
+
+One machine failing must not break the others.
+
+Avoid:
+- shared mutable internals;
+- copy-pasted hidden state;
+- circular dependencies;
+- importing entire sibling repositories;
+- sibling repo writes;
+- assumptions that every machine is installed.
+
+Prefer:
+- explicit data packets;
+- fixtures;
+- versioned manifests;
+- adapters at boundaries;
+- contract tests.
+
+A machine can evolve or be replaced independently.
+
+============================================================
+VERSIONING / COMPATIBILITY
+============================================================
+
+Each repo should identify:
+- its own version;
+- MorphTile versions/contracts it was tested against;
+- provisional machine-envelope version;
+- fixture/conformance version.
+
+Do not claim compatibility with untested versions.
+
+============================================================
+GITHUB / CI FOUNDATION
+============================================================
+
+Where practical, give every repo a minimal CI workflow that:
+
+- installs only what is actually needed;
+- runs its tests;
+- validates fixtures/schema;
+- fails visibly;
+- does not require secrets for basic conformance tests.
+
+Keep the initial dependency footprint small.
+
+Offline/local operation should remain possible for the core machine logic whenever practical.
+
+============================================================
+LICENSING
+============================================================
+
+Do not silently choose a license if the repository's intended license has not been explicitly established.
+
+If Mike has already chosen the applicable license in the current project context, use it.
+
+Otherwise create LICENSE_DECISION.md with:
+- license not yet finalized;
+- intended openness/use goals;
+- no invented legal claim.
+
+Do not let licensing uncertainty block technical foundation work.
+
+============================================================
+PLATFORM CODEX EXECUTION ORDER
+============================================================
+
+Recommended order:
+
+1. Inspect canonical MorphTile GitHub state.
+2. Confirm all seven repositories exist.
+3. Establish consistent README/status/architecture skeletons.
+4. Add minimal provisional machine envelope.
+5. Build tiny conformance fixtures.
+6. Implement the smallest real adapter/proof in each specialist repo.
+7. Build Verification foundation.
+8. Build Assembly foundation.
+9. Build Director fixture-routing proof.
+10. Run all repo tests individually.
+11. Cross-check boundaries and accidental coupling.
+12. Produce one handoff for the later local specialist teams.
+
+Do not attempt deep autonomous growth during this platform pass.
+
+============================================================
+HANDOFF FOR LOCAL SPECIALISTS
+============================================================
+
+At completion, produce a compact MACHINE ECOSYSTEM HANDOFF containing:
+
+- repo name;
+- current commit;
+- implemented foundation;
+- tests/results;
+- MorphTile version tested against;
+- provisional envelope version;
+- open gaps;
+- known risks;
+- exact next specialist task;
+- anything HELD;
+- whether visual proof exists.
+
+Also state cross-repo status:
+
+MORPHTILE CORE:
+<status>
+
+FORM MACHINE:
+<status>
+
+SURFACE MACHINE:
+<status>
+
+CAPABILITY MACHINE:
+<status>
+
+INTERFACE MACHINE:
+<status>
+
+ASSEMBLY MACHINE:
+<status>
+
+VERIFICATION MACHINE:
+<status>
+
+CREATION DIRECTOR:
+<status>
+
+============================================================
+NON-NEGOTIABLES
+============================================================
+
+- Preserve the current MorphTile direction.
+- Do not rebuild MorphTile in the machine repos.
+- MorphTile must not depend on AXM's machines.
+- Machine output is candidate matter, not automatic canon.
+- No fake done.
+- No fake tests.
+- No fake compatibility.
+- No silent dependency overwrite.
+- No black-box requirement for user-owned matter.
+- No unnecessary cloud dependency.
+- No sibling-repo mutation.
+- No monolith reconstruction.
+- No speculative features just to fill repos.
+- Keep failed experiments visible where useful.
+- Keep each repo understandable by a future specialist that has never seen this chat.
+
+NORTH STAR
+
+SMALL MORPHTILE CORE.
+REPLACEABLE CREATION MACHINERY.
+PORTABLE MATTER.
+OPEN MACHINE ECOSYSTEM.
+SOLVED GAPS BECOME REUSABLE LEGO.
+
+FOUNDATION-PASS SUCCESS
+
+This pass succeeds when the seven repos are clean, independently understandable, minimally executable/testable where appropriate, compatible at their boundaries, and ready for deeper local specialist work.
+
+Do not claim:
+
+"MorphTile can manufacture MorphTile"
+
+just because these foundations exist.
+
+That sentence belongs to the later run only after the machines actually create, assemble and verify real reusable MorphTile LEGO.
