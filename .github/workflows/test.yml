@@ -10,6 +10,7 @@ permissions:
 jobs:
   verify:
     strategy:
+      fail-fast: false
       matrix:
         include:
           - os: ubuntu-latest
@@ -57,11 +58,27 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
-      - run: npm test
-      - run: npm run test:integration
+      - name: Unit tests
+        run: npm test
+      - name: Ecosystem integration
+        shell: bash
+        run: |
+          set +e
+          npm run test:integration > integration-test.log 2>&1
+          code=$?
+          cat integration-test.log
+          exit $code
         env:
           MORPHTILE_ECOSYSTEM_ROOT: ${{ github.workspace }}/.runtime
-      - run: npm run prove -- .proof
+      - name: Upload integration failure log
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: integration-failure-${{ matrix.os }}-node${{ matrix.node }}
+          path: integration-test.log
+          if-no-files-found: ignore
+      - name: Creation proof
+        run: npm run prove -- .proof
         env:
           MORPHTILE_ECOSYSTEM_ROOT: ${{ github.workspace }}/.runtime
       - uses: actions/upload-artifact@v4
