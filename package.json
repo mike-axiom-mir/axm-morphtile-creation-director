@@ -4,7 +4,7 @@
   "private": false,
   "type": "commonjs",
   "scripts": {
-    "test": "node --test test/foundation.test.js test/creation-plan.test.js",
+    "test": "node --test test/foundation.test.js test/creation-plan.test.js test/integration-pins.test.js",
     "test:integration": "node --test test/creation.integration.js",
     "prove": "node tools/prove-creation.js"
   },
