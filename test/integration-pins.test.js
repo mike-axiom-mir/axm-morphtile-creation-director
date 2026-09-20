@@ -18,11 +18,12 @@ test("integration source fixture is the complete exact seven-part ecosystem", ()
 });
 
 test("GitHub checkout outputs are derived from the fixture without a second SHA list", () => {
-  const output = githubOutputLines(fixture);
+  const lines = new Set(githubOutputLines(fixture).trim().split("\n"));
   for (const kind of REQUIRED_KINDS) {
-    assert.match(output, new RegExp(`(?:^|\\n)${kind}_repository=${fixture[kind].repository.replace(/[.*+?^${}()|[\\]\\]/g, "\\$&")}(?:\\n|$)`));
-    assert.match(output, new RegExp(`(?:^|\\n)${kind}_commit=${fixture[kind].commit}(?:\\n|$)`));
+    assert.ok(lines.has(`${kind}_repository=${fixture[kind].repository}`));
+    assert.ok(lines.has(`${kind}_commit=${fixture[kind].commit}`));
   }
+  assert.equal(lines.size, REQUIRED_KINDS.length * 2);
 });
 
 test("pin validation fails closed on missing, extra or non-exact source identities", () => {
