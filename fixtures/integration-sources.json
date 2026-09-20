@@ -21,7 +21,7 @@
   },
   "assembly": {
     "repository": "mike-axiom-mir/axm-morphtile-machine-assembly",
-    "commit": "052e1618e499102e816ee537d16c0550e6942721",
+    "commit": "3941fba9254f42c9856a9fcc1598180b2696437f",
     "entry": "src/index.js"
   },
   "verification": {
