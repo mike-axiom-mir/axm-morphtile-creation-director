@@ -38,12 +38,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: mike-axiom-mir/axm-morphtile-machine-interface
-          ref: 2b43582c7ac82dac40926ea15f4695757c9bb438
+          ref: 3c715d8aa0138472000472d584f990a88a543ecf
           path: .runtime/interface
       - uses: actions/checkout@v4
         with:
           repository: mike-axiom-mir/axm-morphtile-machine-assembly
-          ref: efe44779ff558a6c4966219b2bbf3c15d1cd10bc
+          ref: 052e1618e499102e816ee537d16c0550e6942721
           path: .runtime/assembly
       - uses: actions/checkout@v4
         with:
