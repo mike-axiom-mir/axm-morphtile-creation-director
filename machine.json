@@ -1,1 +1,19 @@
-{"schema":"axm.morphtile.machine-manifest/v0.1","id":"axm.morphtile.creation-director","version":"0.1.1","envelope":"0.1","accepts":["axm.morphtile.goal-request/v0.1"],"produces":["axm.morphtile.director-report/v0.1"],"tested_against":{"repository":"mike-axiom-mir/axm-morphtile","commit":"13d83a2b2c0d12644442d3d9e45bcbe0af19876a","format":"v0.4"}}
+{
+  "schema": "axm.morphtile.machine-manifest/v0.1",
+  "id": "axm.morphtile.creation-director",
+  "version": "0.2.0",
+  "envelope": "0.1",
+  "accepts": [
+    "axm.morphtile.goal-request/v0.1",
+    "axm.morphtile.creation-plan/v0.1"
+  ],
+  "produces": [
+    "axm.morphtile.director-report/v0.2",
+    "axm.morphtile.creation-output/v0.1"
+  ],
+  "tested_against": {
+    "repository": "mike-axiom-mir/axm-morphtile",
+    "commit": "ef2b3c6986aa1a333247feffc43a8443f17239d0",
+    "format": "v0.4"
+  }
+}

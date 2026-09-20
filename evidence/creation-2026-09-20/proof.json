@@ -1,0 +1,129 @@
+{
+  "schema": "axm.morphtile.creation-proof/v0.1",
+  "sources": {
+    "form": {
+      "repository": "mike-axiom-mir/axm-morphtile-machine-form",
+      "commit": "ec89829c4668426920b52d7e03b5a6fb52ac6e76",
+      "tree": "5f6f60bf7fafd58e05250e20094412204bbbfa78"
+    },
+    "surface": {
+      "repository": "mike-axiom-mir/axm-morphtile-machine-surface",
+      "commit": "35e4c9f464f13d6778f1f82d340e5cd63c86ee7a",
+      "tree": "d5474583a2849259a378dc335def6b5015017e8a"
+    },
+    "capability": {
+      "repository": "mike-axiom-mir/axm-morphtile-machine-capability",
+      "commit": "795ac57694d69128d4a077de4ee1750f98ea277b",
+      "tree": "125e2a0b8bf7900f3e28714ce5628b71e081fe3b"
+    },
+    "interface": {
+      "repository": "mike-axiom-mir/axm-morphtile-machine-interface",
+      "commit": "699785dea8206e0a488ff98c0da4611bc0a2988b",
+      "tree": "36c6278a58d7fd4a5b1d23bdb398143af1573c49"
+    },
+    "assembly": {
+      "repository": "mike-axiom-mir/axm-morphtile-machine-assembly",
+      "commit": "af15bf3e566f77fcaba269f5703eb06b99aba9cb",
+      "tree": "d329e0b3d2c410189da621f14be3cf0372c395ab"
+    },
+    "verification": {
+      "repository": "mike-axiom-mir/axm-morphtile-machine-verification",
+      "commit": "604ee415707c8d41ec9846da8b02aee46540bf60",
+      "tree": "0fd0997a71cac465bc57e2771d158f101565a663"
+    },
+    "core": {
+      "repository": "mike-axiom-mir/axm-morphtile",
+      "commit": "35aa5ee407e091ed417a3bfa290ada568c7d07c0",
+      "tree": "d5e7f095dc8dedc2d4ba1be1dd5b9ce636ba6afc"
+    }
+  },
+  "request_sha256": "b514c89aa7e29ed2e960e9ea7837ad23a66dfcdd5254d32bc62022e24da447ff",
+  "kit_sha256": "180fdfd0a75beede6dc4053c879a274c37fe5e90d3ab2ff63f808685f5874ec7",
+  "pipeline_status": "CANDIDATE",
+  "repeated_pipeline_identical": true,
+  "machine_order": [
+    "shape",
+    "surface",
+    "capability",
+    "interface",
+    "assemble",
+    "verify"
+  ],
+  "kit_verification": {
+    "status": "PASS",
+    "checked": [
+      "envelope",
+      "payload-hash",
+      "closure-counts",
+      "tile-validation",
+      "fresh-import-ready",
+      "fresh-import-evidence",
+      "import-analysis-no-mutation",
+      "semantic-tamper-rejection",
+      "tamper-analysis-no-mutation"
+    ],
+    "errors": [],
+    "receipt": {
+      "schema": "axm.morphtile.kit-conformance-receipt/v0.1",
+      "runtime_version": "0.4",
+      "source_closure_hash": {
+        "algorithm": "sha256",
+        "canonicalization": "sorted-key-json/v1",
+        "scope": "candidate+dependencies+world_requirements",
+        "value": "ebb335ffe3ebf18c72dd5aad51eda0c415586cfbcbfa6785e0ba4b793ec45fb8"
+      },
+      "expected_payload_sha256": "180fdfd0a75beede6dc4053c879a274c37fe5e90d3ab2ff63f808685f5874ec7",
+      "observed_payload_sha256": "180fdfd0a75beede6dc4053c879a274c37fe5e90d3ab2ff63f808685f5874ec7",
+      "defs": 1,
+      "words": 1,
+      "fresh_import_status": "READY",
+      "fresh_import_evidence": "verified_payload_sha256",
+      "import_analysis_mutated_receiver": false,
+      "tamper_status": "HOLD_HASH_MISMATCH",
+      "tamper_analysis_mutated_receiver": false
+    }
+  },
+  "geometry": {
+    "hold": null,
+    "triangles": 1236,
+    "definition_count": 1,
+    "word_count": 1
+  },
+  "counter": {
+    "initial": 7,
+    "after_signal": 8,
+    "after_sleep_and_rewake": 8
+  },
+  "canonical_matter_unchanged_by_behavior": true,
+  "installed_world_sha256": "6e8a6530c9fc21b94f59466a18bf187e9471ad56fffdbbb72fb8827468990bd0",
+  "live_sha256": "2fabc262583bda808ac9d6fd8121424b50fef8d4dde9b07a1760f8d6d14f2eb2",
+  "replay_sha256": "2fabc262583bda808ac9d6fd8121424b50fef8d4dde9b07a1760f8d6d14f2eb2",
+  "immediate_rollback": {
+    "before_sha256": "5b1a8339c88d5031641625f90ce8f198e2e29fb3288af5020a75dea4287bf2fb",
+    "after_sha256": "5b1a8339c88d5031641625f90ce8f198e2e29fb3288af5020a75dea4287bf2fb"
+  },
+  "renders": {
+    "sleeping": {
+      "form": "game_asset",
+      "width": 720,
+      "height": 420,
+      "sha256": "ba1b9f0250c55e2655b4144fbb4e292b22e2f31f6e0d7e1af75d1ab8d3161911",
+      "tris": 582
+    },
+    "active": {
+      "form": "game_asset",
+      "width": 720,
+      "height": 420,
+      "sha256": "ba1b9f0250c55e2655b4144fbb4e292b22e2f31f6e0d7e1af75d1ab8d3161911",
+      "tris": 582
+    },
+    "reverse": {
+      "form": "game_asset",
+      "width": 720,
+      "height": 420,
+      "sha256": "25f3fba447e07a47fe7c6544ad4422b01f2c072dd8c21b38a75b2a05ac67ba4d",
+      "tris": 582
+    }
+  },
+  "scope": "Native rasterizer and declared fixture behavior only. No general visual-quality, performance, autonomous decomposition or production-readiness claim."
+}

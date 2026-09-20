@@ -1,0 +1,273 @@
+{
+  "envelope_version": "0.1",
+  "request_id": "signal-pavilion",
+  "goal": "Create a reusable signal pavilion with an ordered interface and sleeping counter",
+  "schema": "axm.morphtile.creation-plan/v0.1",
+  "tasks": [
+    {
+      "id": "verify",
+      "kind": "verification",
+      "packet": {
+        "envelope_version": "0.1",
+        "request_id": "verify-pavilion",
+        "goal": "Check the assembled tile structure"
+      },
+      "candidate_from": "assemble"
+    },
+    {
+      "id": "shape",
+      "kind": "form",
+      "packet": {
+        "envelope_version": "0.1",
+        "request_id": "shape-pavilion",
+        "goal": "Repeat the explicit reusable station definition",
+        "intent": {
+          "name": "Signal Pavilion",
+          "repeat": {
+            "count": 6,
+            "step": [
+              1.8,
+              0,
+              0
+            ],
+            "instance": {
+              "use": "station",
+              "with": {
+                "height": 2.6
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "surface",
+      "kind": "surface",
+      "packet": {
+        "envelope_version": "0.1",
+        "request_id": "surface-pavilion",
+        "goal": "Paint upward surfaces gold and other faces blue",
+        "intent": {
+          "base_color": [
+            0.15,
+            0.3,
+            0.6
+          ],
+          "surface_rule": {
+            "kind": "facing",
+            "direction": "up",
+            "threshold": 0.65,
+            "match_color": [
+              0.95,
+              0.7,
+              0.2
+            ],
+            "else_color": [
+              0.14,
+              0.28,
+              0.58
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "capability",
+      "kind": "capability",
+      "packet": {
+        "envelope_version": "0.1",
+        "request_id": "capability-pavilion",
+        "goal": "Wake a retained counter when a visitor approaches",
+        "intent": {
+          "kind": "sleeping-counter",
+          "initial": 7,
+          "wake": {
+            "on": "near",
+            "within": 4,
+            "hysteresis": 1.5
+          }
+        }
+      }
+    },
+    {
+      "id": "interface",
+      "kind": "interface",
+      "packet": {
+        "envelope_version": "0.1",
+        "request_id": "interface-pavilion",
+        "goal": "Present the same counter through ordered symbolic controls",
+        "intent": {
+          "tile_path": "mt_pavilion",
+          "title": "Signal Pavilion",
+          "elements": [
+            {
+              "kind": "text",
+              "text": "Approach to wake this pavilion. Its counter survives sleep."
+            },
+            {
+              "kind": "readout",
+              "binding": "count",
+              "label": "Signals"
+            },
+            {
+              "kind": "action",
+              "binding": "increment",
+              "label": "Send a signal"
+            }
+          ],
+          "bindings": {
+            "readouts": [
+              "count"
+            ],
+            "actions": [
+              "increment"
+            ],
+            "controls": []
+          },
+          "placement": {
+            "mode": "docked",
+            "dock": "right",
+            "preferred_size": [
+              360,
+              240
+            ],
+            "user_adjustable": true
+          }
+        }
+      }
+    },
+    {
+      "id": "assemble",
+      "kind": "assembly",
+      "inputs_from": [
+        "shape",
+        "surface",
+        "capability",
+        "interface"
+      ],
+      "packet": {
+        "envelope_version": "0.1",
+        "request_id": "assemble-pavilion",
+        "goal": "Assemble complete matter and retain reusable definition and word",
+        "intent": {
+          "id": "mt_pavilion",
+          "name": "Signal Pavilion"
+        },
+        "inputs": [
+          {
+            "candidate": {
+              "schema": "morphtile.tile-spec/v0.4",
+              "form_hints": [
+                "ui_panel"
+              ],
+              "facets": {}
+            },
+            "provenance": {
+              "caller": "explicit-director-fixture-ui-eligibility"
+            }
+          }
+        ],
+        "world_requirements": {
+          "definitions": {
+            "station": {
+              "id": "station",
+              "name": "Reusable signal station",
+              "created_by": "director-fixture",
+              "body": {
+                "facets": {
+                  "mesh": {
+                    "type": "generated",
+                    "source": null,
+                    "data": {
+                      "generator": "recipe",
+                      "vars": {
+                        "height": 2
+                      },
+                      "parts": [
+                        {
+                          "shape": "cylinder",
+                          "size": [
+                            0.28,
+                            [
+                              "var",
+                              "height"
+                            ],
+                            0.28
+                          ],
+                          "pos": [
+                            0,
+                            [
+                              "half",
+                              [
+                                "var",
+                                "height"
+                              ]
+                            ],
+                            0
+                          ]
+                        },
+                        {
+                          "shape": "box",
+                          "size": [
+                            1.2,
+                            0.18,
+                            1.2
+                          ],
+                          "pos": [
+                            0,
+                            0.09,
+                            0
+                          ]
+                        },
+                        {
+                          "shape": "cone",
+                          "size": [
+                            1.1,
+                            0.7,
+                            1.1
+                          ],
+                          "pos": [
+                            0,
+                            [
+                              "+",
+                              [
+                                "var",
+                                "height"
+                              ],
+                              0.35
+                            ],
+                            0
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "words": {
+            "half": {
+              "name": "half",
+              "args": [
+                "x"
+              ],
+              "body": [
+                "/",
+                [
+                  "var",
+                  "x"
+                ],
+                2
+              ],
+              "note": "Reusable midpoint expression"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "provenance": {
+    "caller": "director-example"
+  }
+}

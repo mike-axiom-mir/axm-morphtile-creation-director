@@ -1,0 +1,2377 @@
+{
+  "envelope_version": "0.1",
+  "request_id": "signal-pavilion",
+  "machine": {
+    "id": "axm.morphtile.creation-director",
+    "version": "0.2.0"
+  },
+  "status": "CANDIDATE",
+  "candidate": {
+    "schema": "axm.morphtile.creation-output/v0.1",
+    "report": {
+      "envelope_version": "0.1",
+      "request_id": "signal-pavilion",
+      "machine": {
+        "id": "axm.morphtile.creation-director",
+        "version": "0.2.0"
+      },
+      "status": "CANDIDATE",
+      "candidate": {
+        "schema": "axm.morphtile.director-report/v0.2",
+        "goal": "Create a reusable signal pavilion with an ordered interface and sleeping counter",
+        "order": [
+          "shape",
+          "surface",
+          "capability",
+          "interface",
+          "assemble",
+          "verify"
+        ],
+        "terminal_tasks": [
+          "verify"
+        ],
+        "route": [
+          {
+            "id": "shape",
+            "kind": "form",
+            "machine": "axm.morphtile.machine.form",
+            "dependencies": [],
+            "execution": "EXECUTED",
+            "status": "CANDIDATE",
+            "packet": {
+              "envelope_version": "0.1",
+              "request_id": "shape-pavilion",
+              "goal": "Repeat the explicit reusable station definition",
+              "intent": {
+                "name": "Signal Pavilion",
+                "repeat": {
+                  "count": 6,
+                  "step": [
+                    1.8,
+                    0,
+                    0
+                  ],
+                  "instance": {
+                    "use": "station",
+                    "with": {
+                      "height": 2.6
+                    }
+                  }
+                }
+              }
+            },
+            "response": {
+              "envelope_version": "0.1",
+              "request_id": "shape-pavilion",
+              "machine": {
+                "id": "axm.morphtile.machine.form",
+                "version": "0.5.0"
+              },
+              "status": "CANDIDATE",
+              "candidate": {
+                "schema": "morphtile.tile-spec/v0.4",
+                "name": "Signal Pavilion",
+                "form_hints": [
+                  "game_asset"
+                ],
+                "facets": {
+                  "mesh": {
+                    "type": "generated",
+                    "source": null,
+                    "data": {
+                      "generator": "recipe",
+                      "vars": {},
+                      "parts": [
+                        {
+                          "repeat": 6,
+                          "as": "i",
+                          "body": [
+                            {
+                              "use": "station",
+                              "with": {
+                                "height": 2.6
+                              },
+                              "pos": [
+                                [
+                                  "+",
+                                  0,
+                                  [
+                                    "*",
+                                    [
+                                      "var",
+                                      "i"
+                                    ],
+                                    1.8
+                                  ]
+                                ],
+                                0,
+                                0
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                }
+              },
+              "dependencies": [],
+              "evidence": [
+                {
+                  "kind": "STRUCTURAL",
+                  "status": "PASS",
+                  "check": "bounded definition-instance repeat normalized into a compact MorphTile recipe (6 instances)"
+                }
+              ],
+              "warnings": [
+                {
+                  "code": "NOT_VISUALLY_VERIFIED"
+                },
+                {
+                  "code": "DEFINITION_RUNTIME_RESOLUTION_REQUIRED"
+                }
+              ],
+              "holds": [],
+              "provenance": {},
+              "suggested_missing_capability": null
+            },
+            "packet_sha256": "cd5e0ad3b0c1fb1a02c8294f9c7c1a71764da41a3fec4a83c2cce56fabbb0793",
+            "response_sha256": "e231205d2ebb8acbe9dade6709c6d71910c64077e523d1a58dc3abf6306afa97",
+            "sources": []
+          },
+          {
+            "id": "surface",
+            "kind": "surface",
+            "machine": "axm.morphtile.machine.surface",
+            "dependencies": [],
+            "execution": "EXECUTED",
+            "status": "CANDIDATE",
+            "packet": {
+              "envelope_version": "0.1",
+              "request_id": "surface-pavilion",
+              "goal": "Paint upward surfaces gold and other faces blue",
+              "intent": {
+                "base_color": [
+                  0.15,
+                  0.3,
+                  0.6
+                ],
+                "surface_rule": {
+                  "kind": "facing",
+                  "direction": "up",
+                  "threshold": 0.65,
+                  "match_color": [
+                    0.95,
+                    0.7,
+                    0.2
+                  ],
+                  "else_color": [
+                    0.14,
+                    0.28,
+                    0.58
+                  ]
+                }
+              }
+            },
+            "response": {
+              "envelope_version": "0.1",
+              "request_id": "surface-pavilion",
+              "machine": {
+                "id": "axm.morphtile.machine.surface",
+                "version": "0.3.0"
+              },
+              "status": "CANDIDATE",
+              "candidate": {
+                "schema": "morphtile.facet-candidate/v0.4",
+                "facet": "material",
+                "value": {
+                  "type": "generated",
+                  "source": null,
+                  "data": {
+                    "color": [
+                      0.15,
+                      0.3,
+                      0.6
+                    ],
+                    "paint": {
+                      "color": [
+                        [
+                          "if",
+                          [
+                            ">=",
+                            [
+                              "var",
+                              "ny"
+                            ],
+                            0.65
+                          ],
+                          0.95,
+                          0.14
+                        ],
+                        [
+                          "if",
+                          [
+                            ">=",
+                            [
+                              "var",
+                              "ny"
+                            ],
+                            0.65
+                          ],
+                          0.7,
+                          0.28
+                        ],
+                        [
+                          "if",
+                          [
+                            ">=",
+                            [
+                              "var",
+                              "ny"
+                            ],
+                            0.65
+                          ],
+                          0.2,
+                          0.58
+                        ]
+                      ]
+                    }
+                  }
+                }
+              },
+              "dependencies": [],
+              "evidence": [
+                {
+                  "kind": "STRUCTURAL",
+                  "status": "PASS",
+                  "check": "named surface rule compiled to MorphTile normal paint expression",
+                  "rule": {
+                    "kind": "facing",
+                    "direction": "up",
+                    "threshold": 0.65,
+                    "match_color": [
+                      0.95,
+                      0.7,
+                      0.2
+                    ],
+                    "else_color": [
+                      0.14,
+                      0.28,
+                      0.58
+                    ]
+                  }
+                },
+                {
+                  "kind": "VISUAL",
+                  "status": "NOT_TESTED",
+                  "check": "no rendered observer ran in this machine pass"
+                }
+              ],
+              "warnings": [],
+              "holds": [],
+              "provenance": {},
+              "suggested_missing_capability": null
+            },
+            "packet_sha256": "0da9901d38801c5dc4790ca9a3cb8b266972a82bb81514a4057cfbed07938a2c",
+            "response_sha256": "cea5192bd16675c79dfed3d85c2b8c4761bd5424d505c06004e18dbe67e3b946",
+            "sources": []
+          },
+          {
+            "id": "capability",
+            "kind": "capability",
+            "machine": "axm.morphtile.machine.capability",
+            "dependencies": [],
+            "execution": "EXECUTED",
+            "status": "CANDIDATE",
+            "packet": {
+              "envelope_version": "0.1",
+              "request_id": "capability-pavilion",
+              "goal": "Wake a retained counter when a visitor approaches",
+              "intent": {
+                "kind": "sleeping-counter",
+                "initial": 7,
+                "wake": {
+                  "on": "near",
+                  "within": 4,
+                  "hysteresis": 1.5
+                }
+              }
+            },
+            "response": {
+              "envelope_version": "0.1",
+              "request_id": "capability-pavilion",
+              "machine": {
+                "id": "axm.morphtile.machine.capability",
+                "version": "0.1.0"
+              },
+              "status": "CANDIDATE",
+              "candidate": {
+                "schema": "morphtile.capability-candidate/v0.4",
+                "capabilities": [
+                  {
+                    "id": "counter",
+                    "wake": {
+                      "on": "near",
+                      "within": 4,
+                      "hysteresis": 1.5
+                    },
+                    "grants": {
+                      "facets": {
+                        "logic": {
+                          "type": "rule",
+                          "data": {
+                            "vars": {
+                              "count": 7
+                            },
+                            "rules": [
+                              {
+                                "on": "increment",
+                                "do": [
+                                  {
+                                    "set": [
+                                      "count",
+                                      [
+                                        "+",
+                                        [
+                                          "var",
+                                          "count"
+                                        ],
+                                        1
+                                      ]
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "sockets": [
+                        {
+                          "id": "increment",
+                          "kind": "signal",
+                          "dir": "in",
+                          "signal": "increment",
+                          "label": "Increment"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "dependencies": [],
+              "evidence": [
+                {
+                  "kind": "DETERMINISTIC_OUTPUT",
+                  "status": "PASS",
+                  "check": "same validated request maps to the same candidate bytes"
+                }
+              ],
+              "warnings": [],
+              "holds": [],
+              "provenance": {},
+              "suggested_missing_capability": null
+            },
+            "packet_sha256": "7055b5c6680ab47e444f10738514de2a85faba4fd095a43d29c6949f5d0ec88f",
+            "response_sha256": "6e3d70f67838a3664443b6b5e828890c1aff4dd77a4db8cd494725f12951d9bf",
+            "sources": []
+          },
+          {
+            "id": "interface",
+            "kind": "interface",
+            "machine": "axm.morphtile.machine.interface",
+            "dependencies": [],
+            "execution": "EXECUTED",
+            "status": "CANDIDATE",
+            "packet": {
+              "envelope_version": "0.1",
+              "request_id": "interface-pavilion",
+              "goal": "Present the same counter through ordered symbolic controls",
+              "intent": {
+                "tile_path": "mt_pavilion",
+                "title": "Signal Pavilion",
+                "elements": [
+                  {
+                    "kind": "text",
+                    "text": "Approach to wake this pavilion. Its counter survives sleep."
+                  },
+                  {
+                    "kind": "readout",
+                    "binding": "count",
+                    "label": "Signals"
+                  },
+                  {
+                    "kind": "action",
+                    "binding": "increment",
+                    "label": "Send a signal"
+                  }
+                ],
+                "bindings": {
+                  "readouts": [
+                    "count"
+                  ],
+                  "actions": [
+                    "increment"
+                  ],
+                  "controls": []
+                },
+                "placement": {
+                  "mode": "docked",
+                  "dock": "right",
+                  "preferred_size": [
+                    360,
+                    240
+                  ],
+                  "user_adjustable": true
+                }
+              }
+            },
+            "response": {
+              "envelope_version": "0.1",
+              "request_id": "interface-pavilion",
+              "machine": {
+                "id": "axm.morphtile.machine.interface",
+                "version": "0.4.0"
+              },
+              "status": "CANDIDATE",
+              "candidate": {
+                "schema": "morphtile.interface-operations/v0.4",
+                "operations": [
+                  {
+                    "op": "view.set",
+                    "id": "mt_pavilion",
+                    "view": {
+                      "title": "Signal Pavilion",
+                      "body": [
+                        {
+                          "text": "Approach to wake this pavilion. Its counter survives sleep."
+                        },
+                        {
+                          "value": "count",
+                          "label": "Signals"
+                        },
+                        {
+                          "button": "increment",
+                          "label": "Send a signal"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "op": "presentation.set",
+                    "id": "mt_pavilion",
+                    "presentation": {
+                      "mode": "docked",
+                      "dock": "right",
+                      "preferred_size": [
+                        360,
+                        240
+                      ],
+                      "user_adjustable": true
+                    }
+                  }
+                ]
+              },
+              "dependencies": [],
+              "evidence": [
+                {
+                  "kind": "AUTHORITY",
+                  "status": "PASS",
+                  "check": "candidate carries only validated authored interface text, ordered declared symbolic bindings and presentation descriptors; no copied canonical or session state"
+                }
+              ],
+              "warnings": [
+                {
+                  "code": "TARGET_MUST_EXIST_AND_DECLARE_UI_PANEL"
+                },
+                {
+                  "code": "CALLER_MUST_PROVE_BINDINGS_MATCH_TARGET"
+                }
+              ],
+              "holds": [],
+              "provenance": {},
+              "suggested_missing_capability": null
+            },
+            "packet_sha256": "a88652b1a311eb8dae0203b46652955e215552d09cba7b19f7fdd722254099b0",
+            "response_sha256": "82ff497c1ea213a4e232ac5738f20c36e84ed70a3a52dc5b79758d41c74e6338",
+            "sources": []
+          },
+          {
+            "id": "assemble",
+            "kind": "assembly",
+            "machine": "axm.morphtile.machine.assembly",
+            "dependencies": [
+              "capability",
+              "interface",
+              "shape",
+              "surface"
+            ],
+            "execution": "EXECUTED",
+            "status": "CANDIDATE",
+            "packet": {
+              "envelope_version": "0.1",
+              "request_id": "assemble-pavilion",
+              "goal": "Assemble complete matter and retain reusable definition and word",
+              "intent": {
+                "id": "mt_pavilion",
+                "name": "Signal Pavilion"
+              },
+              "inputs": [
+                {
+                  "candidate": {
+                    "schema": "morphtile.tile-spec/v0.4",
+                    "form_hints": [
+                      "ui_panel"
+                    ],
+                    "facets": {}
+                  },
+                  "provenance": {
+                    "caller": "explicit-director-fixture-ui-eligibility"
+                  }
+                },
+                {
+                  "envelope_version": "0.1",
+                  "request_id": "shape-pavilion",
+                  "machine": {
+                    "id": "axm.morphtile.machine.form",
+                    "version": "0.5.0"
+                  },
+                  "status": "CANDIDATE",
+                  "candidate": {
+                    "schema": "morphtile.tile-spec/v0.4",
+                    "name": "Signal Pavilion",
+                    "form_hints": [
+                      "game_asset"
+                    ],
+                    "facets": {
+                      "mesh": {
+                        "type": "generated",
+                        "source": null,
+                        "data": {
+                          "generator": "recipe",
+                          "vars": {},
+                          "parts": [
+                            {
+                              "repeat": 6,
+                              "as": "i",
+                              "body": [
+                                {
+                                  "use": "station",
+                                  "with": {
+                                    "height": 2.6
+                                  },
+                                  "pos": [
+                                    [
+                                      "+",
+                                      0,
+                                      [
+                                        "*",
+                                        [
+                                          "var",
+                                          "i"
+                                        ],
+                                        1.8
+                                      ]
+                                    ],
+                                    0,
+                                    0
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "dependencies": [],
+                  "evidence": [
+                    {
+                      "kind": "STRUCTURAL",
+                      "status": "PASS",
+                      "check": "bounded definition-instance repeat normalized into a compact MorphTile recipe (6 instances)"
+                    }
+                  ],
+                  "warnings": [
+                    {
+                      "code": "NOT_VISUALLY_VERIFIED"
+                    },
+                    {
+                      "code": "DEFINITION_RUNTIME_RESOLUTION_REQUIRED"
+                    }
+                  ],
+                  "holds": [],
+                  "provenance": {},
+                  "suggested_missing_capability": null
+                },
+                {
+                  "envelope_version": "0.1",
+                  "request_id": "surface-pavilion",
+                  "machine": {
+                    "id": "axm.morphtile.machine.surface",
+                    "version": "0.3.0"
+                  },
+                  "status": "CANDIDATE",
+                  "candidate": {
+                    "schema": "morphtile.facet-candidate/v0.4",
+                    "facet": "material",
+                    "value": {
+                      "type": "generated",
+                      "source": null,
+                      "data": {
+                        "color": [
+                          0.15,
+                          0.3,
+                          0.6
+                        ],
+                        "paint": {
+                          "color": [
+                            [
+                              "if",
+                              [
+                                ">=",
+                                [
+                                  "var",
+                                  "ny"
+                                ],
+                                0.65
+                              ],
+                              0.95,
+                              0.14
+                            ],
+                            [
+                              "if",
+                              [
+                                ">=",
+                                [
+                                  "var",
+                                  "ny"
+                                ],
+                                0.65
+                              ],
+                              0.7,
+                              0.28
+                            ],
+                            [
+                              "if",
+                              [
+                                ">=",
+                                [
+                                  "var",
+                                  "ny"
+                                ],
+                                0.65
+                              ],
+                              0.2,
+                              0.58
+                            ]
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "dependencies": [],
+                  "evidence": [
+                    {
+                      "kind": "STRUCTURAL",
+                      "status": "PASS",
+                      "check": "named surface rule compiled to MorphTile normal paint expression",
+                      "rule": {
+                        "kind": "facing",
+                        "direction": "up",
+                        "threshold": 0.65,
+                        "match_color": [
+                          0.95,
+                          0.7,
+                          0.2
+                        ],
+                        "else_color": [
+                          0.14,
+                          0.28,
+                          0.58
+                        ]
+                      }
+                    },
+                    {
+                      "kind": "VISUAL",
+                      "status": "NOT_TESTED",
+                      "check": "no rendered observer ran in this machine pass"
+                    }
+                  ],
+                  "warnings": [],
+                  "holds": [],
+                  "provenance": {},
+                  "suggested_missing_capability": null
+                },
+                {
+                  "envelope_version": "0.1",
+                  "request_id": "capability-pavilion",
+                  "machine": {
+                    "id": "axm.morphtile.machine.capability",
+                    "version": "0.1.0"
+                  },
+                  "status": "CANDIDATE",
+                  "candidate": {
+                    "schema": "morphtile.capability-candidate/v0.4",
+                    "capabilities": [
+                      {
+                        "id": "counter",
+                        "wake": {
+                          "on": "near",
+                          "within": 4,
+                          "hysteresis": 1.5
+                        },
+                        "grants": {
+                          "facets": {
+                            "logic": {
+                              "type": "rule",
+                              "data": {
+                                "vars": {
+                                  "count": 7
+                                },
+                                "rules": [
+                                  {
+                                    "on": "increment",
+                                    "do": [
+                                      {
+                                        "set": [
+                                          "count",
+                                          [
+                                            "+",
+                                            [
+                                              "var",
+                                              "count"
+                                            ],
+                                            1
+                                          ]
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            }
+                          },
+                          "sockets": [
+                            {
+                              "id": "increment",
+                              "kind": "signal",
+                              "dir": "in",
+                              "signal": "increment",
+                              "label": "Increment"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "dependencies": [],
+                  "evidence": [
+                    {
+                      "kind": "DETERMINISTIC_OUTPUT",
+                      "status": "PASS",
+                      "check": "same validated request maps to the same candidate bytes"
+                    }
+                  ],
+                  "warnings": [],
+                  "holds": [],
+                  "provenance": {},
+                  "suggested_missing_capability": null
+                },
+                {
+                  "envelope_version": "0.1",
+                  "request_id": "interface-pavilion",
+                  "machine": {
+                    "id": "axm.morphtile.machine.interface",
+                    "version": "0.4.0"
+                  },
+                  "status": "CANDIDATE",
+                  "candidate": {
+                    "schema": "morphtile.interface-operations/v0.4",
+                    "operations": [
+                      {
+                        "op": "view.set",
+                        "id": "mt_pavilion",
+                        "view": {
+                          "title": "Signal Pavilion",
+                          "body": [
+                            {
+                              "text": "Approach to wake this pavilion. Its counter survives sleep."
+                            },
+                            {
+                              "value": "count",
+                              "label": "Signals"
+                            },
+                            {
+                              "button": "increment",
+                              "label": "Send a signal"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "op": "presentation.set",
+                        "id": "mt_pavilion",
+                        "presentation": {
+                          "mode": "docked",
+                          "dock": "right",
+                          "preferred_size": [
+                            360,
+                            240
+                          ],
+                          "user_adjustable": true
+                        }
+                      }
+                    ]
+                  },
+                  "dependencies": [],
+                  "evidence": [
+                    {
+                      "kind": "AUTHORITY",
+                      "status": "PASS",
+                      "check": "candidate carries only validated authored interface text, ordered declared symbolic bindings and presentation descriptors; no copied canonical or session state"
+                    }
+                  ],
+                  "warnings": [
+                    {
+                      "code": "TARGET_MUST_EXIST_AND_DECLARE_UI_PANEL"
+                    },
+                    {
+                      "code": "CALLER_MUST_PROVE_BINDINGS_MATCH_TARGET"
+                    }
+                  ],
+                  "holds": [],
+                  "provenance": {},
+                  "suggested_missing_capability": null
+                }
+              ],
+              "world_requirements": {
+                "definitions": {
+                  "station": {
+                    "id": "station",
+                    "name": "Reusable signal station",
+                    "created_by": "director-fixture",
+                    "body": {
+                      "facets": {
+                        "mesh": {
+                          "type": "generated",
+                          "source": null,
+                          "data": {
+                            "generator": "recipe",
+                            "vars": {
+                              "height": 2
+                            },
+                            "parts": [
+                              {
+                                "shape": "cylinder",
+                                "size": [
+                                  0.28,
+                                  [
+                                    "var",
+                                    "height"
+                                  ],
+                                  0.28
+                                ],
+                                "pos": [
+                                  0,
+                                  [
+                                    "half",
+                                    [
+                                      "var",
+                                      "height"
+                                    ]
+                                  ],
+                                  0
+                                ]
+                              },
+                              {
+                                "shape": "box",
+                                "size": [
+                                  1.2,
+                                  0.18,
+                                  1.2
+                                ],
+                                "pos": [
+                                  0,
+                                  0.09,
+                                  0
+                                ]
+                              },
+                              {
+                                "shape": "cone",
+                                "size": [
+                                  1.1,
+                                  0.7,
+                                  1.1
+                                ],
+                                "pos": [
+                                  0,
+                                  [
+                                    "+",
+                                    [
+                                      "var",
+                                      "height"
+                                    ],
+                                    0.35
+                                  ],
+                                  0
+                                ]
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "words": {
+                  "half": {
+                    "name": "half",
+                    "args": [
+                      "x"
+                    ],
+                    "body": [
+                      "/",
+                      [
+                        "var",
+                        "x"
+                      ],
+                      2
+                    ],
+                    "note": "Reusable midpoint expression"
+                  }
+                }
+              }
+            },
+            "response": {
+              "envelope_version": "0.1",
+              "request_id": "assemble-pavilion",
+              "machine": {
+                "id": "axm.morphtile.machine.assembly",
+                "version": "0.5.0"
+              },
+              "status": "CANDIDATE",
+              "candidate": {
+                "schema": "morphtile.tile-spec/v0.4",
+                "name": "Signal Pavilion",
+                "form_hints": [
+                  "ui_panel",
+                  "game_asset"
+                ],
+                "facets": {
+                  "mesh": {
+                    "type": "generated",
+                    "source": null,
+                    "data": {
+                      "generator": "recipe",
+                      "vars": {},
+                      "parts": [
+                        {
+                          "repeat": 6,
+                          "as": "i",
+                          "body": [
+                            {
+                              "use": "station",
+                              "with": {
+                                "height": 2.6
+                              },
+                              "pos": [
+                                [
+                                  "+",
+                                  0,
+                                  [
+                                    "*",
+                                    [
+                                      "var",
+                                      "i"
+                                    ],
+                                    1.8
+                                  ]
+                                ],
+                                0,
+                                0
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  "material": {
+                    "type": "generated",
+                    "source": null,
+                    "data": {
+                      "color": [
+                        0.15,
+                        0.3,
+                        0.6
+                      ],
+                      "paint": {
+                        "color": [
+                          [
+                            "if",
+                            [
+                              ">=",
+                              [
+                                "var",
+                                "ny"
+                              ],
+                              0.65
+                            ],
+                            0.95,
+                            0.14
+                          ],
+                          [
+                            "if",
+                            [
+                              ">=",
+                              [
+                                "var",
+                                "ny"
+                              ],
+                              0.65
+                            ],
+                            0.7,
+                            0.28
+                          ],
+                          [
+                            "if",
+                            [
+                              ">=",
+                              [
+                                "var",
+                                "ny"
+                              ],
+                              0.65
+                            ],
+                            0.2,
+                            0.58
+                          ]
+                        ]
+                      }
+                    }
+                  }
+                },
+                "id": "mt_pavilion",
+                "capabilities": [
+                  {
+                    "id": "counter",
+                    "wake": {
+                      "on": "near",
+                      "within": 4,
+                      "hysteresis": 1.5
+                    },
+                    "grants": {
+                      "facets": {
+                        "logic": {
+                          "type": "rule",
+                          "data": {
+                            "vars": {
+                              "count": 7
+                            },
+                            "rules": [
+                              {
+                                "on": "increment",
+                                "do": [
+                                  {
+                                    "set": [
+                                      "count",
+                                      [
+                                        "+",
+                                        [
+                                          "var",
+                                          "count"
+                                        ],
+                                        1
+                                      ]
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "sockets": [
+                        {
+                          "id": "increment",
+                          "kind": "signal",
+                          "dir": "in",
+                          "signal": "increment",
+                          "label": "Increment"
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "view": {
+                  "title": "Signal Pavilion",
+                  "body": [
+                    {
+                      "text": "Approach to wake this pavilion. Its counter survives sleep."
+                    },
+                    {
+                      "value": "count",
+                      "label": "Signals"
+                    },
+                    {
+                      "button": "increment",
+                      "label": "Send a signal"
+                    }
+                  ]
+                },
+                "presentation": {
+                  "mode": "docked",
+                  "dock": "right",
+                  "preferred_size": [
+                    360,
+                    240
+                  ],
+                  "user_adjustable": true
+                }
+              },
+              "dependencies": [],
+              "world_requirements": {
+                "words": {
+                  "half": {
+                    "name": "half",
+                    "args": [
+                      "x"
+                    ],
+                    "body": [
+                      "/",
+                      [
+                        "var",
+                        "x"
+                      ],
+                      2
+                    ],
+                    "note": "Reusable midpoint expression"
+                  }
+                },
+                "definitions": {
+                  "station": {
+                    "id": "station",
+                    "name": "Reusable signal station",
+                    "created_by": "director-fixture",
+                    "body": {
+                      "facets": {
+                        "mesh": {
+                          "type": "generated",
+                          "source": null,
+                          "data": {
+                            "generator": "recipe",
+                            "vars": {
+                              "height": 2
+                            },
+                            "parts": [
+                              {
+                                "shape": "cylinder",
+                                "size": [
+                                  0.28,
+                                  [
+                                    "var",
+                                    "height"
+                                  ],
+                                  0.28
+                                ],
+                                "pos": [
+                                  0,
+                                  [
+                                    "half",
+                                    [
+                                      "var",
+                                      "height"
+                                    ]
+                                  ],
+                                  0
+                                ]
+                              },
+                              {
+                                "shape": "box",
+                                "size": [
+                                  1.2,
+                                  0.18,
+                                  1.2
+                                ],
+                                "pos": [
+                                  0,
+                                  0.09,
+                                  0
+                                ]
+                              },
+                              {
+                                "shape": "cone",
+                                "size": [
+                                  1.1,
+                                  0.7,
+                                  1.1
+                                ],
+                                "pos": [
+                                  0,
+                                  [
+                                    "+",
+                                    [
+                                      "var",
+                                      "height"
+                                    ],
+                                    0.35
+                                  ],
+                                  0
+                                ]
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "source_provenance": [
+                {
+                  "input": 0,
+                  "status": null,
+                  "machine": null,
+                  "request_id": null,
+                  "candidate_schema": "morphtile.tile-spec/v0.4",
+                  "provenance": {
+                    "caller": "explicit-director-fixture-ui-eligibility"
+                  }
+                },
+                {
+                  "input": 1,
+                  "status": "CANDIDATE",
+                  "machine": {
+                    "id": "axm.morphtile.machine.form",
+                    "version": "0.5.0"
+                  },
+                  "request_id": "shape-pavilion",
+                  "candidate_schema": "morphtile.tile-spec/v0.4",
+                  "provenance": {}
+                },
+                {
+                  "input": 2,
+                  "status": "CANDIDATE",
+                  "machine": {
+                    "id": "axm.morphtile.machine.surface",
+                    "version": "0.3.0"
+                  },
+                  "request_id": "surface-pavilion",
+                  "candidate_schema": "morphtile.facet-candidate/v0.4",
+                  "provenance": {}
+                },
+                {
+                  "input": 3,
+                  "status": "CANDIDATE",
+                  "machine": {
+                    "id": "axm.morphtile.machine.capability",
+                    "version": "0.1.0"
+                  },
+                  "request_id": "capability-pavilion",
+                  "candidate_schema": "morphtile.capability-candidate/v0.4",
+                  "provenance": {}
+                },
+                {
+                  "input": 4,
+                  "status": "CANDIDATE",
+                  "machine": {
+                    "id": "axm.morphtile.machine.interface",
+                    "version": "0.4.0"
+                  },
+                  "request_id": "interface-pavilion",
+                  "candidate_schema": "morphtile.interface-operations/v0.4",
+                  "provenance": {}
+                }
+              ],
+              "held_candidates": [],
+              "closure_hash": {
+                "algorithm": "sha256",
+                "canonicalization": "sorted-key-json/v1",
+                "scope": "candidate+dependencies+world_requirements",
+                "value": "ebb335ffe3ebf18c72dd5aad51eda0c415586cfbcbfa6785e0ba4b793ec45fb8"
+              },
+              "evidence": [
+                {
+                  "kind": "ASSEMBLY",
+                  "status": "PASS",
+                  "check": "deterministic compatible candidate union without overwrite; proven Interface view and presentation operations are folded only when target identity matches and ui_panel eligibility already exists"
+                },
+                {
+                  "kind": "CLOSURE",
+                  "status": "PASS",
+                  "check": "request/input dependency and world-requirement closure plus source provenance and upstream warnings are preserved without silent replacement"
+                },
+                {
+                  "kind": "HASH",
+                  "status": "PASS",
+                  "check": "candidate + dependencies + world requirements are bound by canonical SHA-256; provenance/evidence/warnings are intentionally outside content identity"
+                }
+              ],
+              "warnings": [
+                {
+                  "code": "UPSTREAM_WARNING",
+                  "input": 1,
+                  "machine": "axm.morphtile.machine.form",
+                  "warning": {
+                    "code": "NOT_VISUALLY_VERIFIED"
+                  }
+                },
+                {
+                  "code": "UPSTREAM_WARNING",
+                  "input": 1,
+                  "machine": "axm.morphtile.machine.form",
+                  "warning": {
+                    "code": "DEFINITION_RUNTIME_RESOLUTION_REQUIRED"
+                  }
+                },
+                {
+                  "code": "UPSTREAM_WARNING",
+                  "input": 4,
+                  "machine": "axm.morphtile.machine.interface",
+                  "warning": {
+                    "code": "TARGET_MUST_EXIST_AND_DECLARE_UI_PANEL"
+                  }
+                },
+                {
+                  "code": "UPSTREAM_WARNING",
+                  "input": 4,
+                  "machine": "axm.morphtile.machine.interface",
+                  "warning": {
+                    "code": "CALLER_MUST_PROVE_BINDINGS_MATCH_TARGET"
+                  }
+                }
+              ],
+              "holds": [],
+              "provenance": {},
+              "suggested_missing_capability": null
+            },
+            "packet_sha256": "de168249f756f09e9a3b98d22bdd499cfb6565b74c72ce0318e0a537264785d0",
+            "response_sha256": "2f86cbf38db12f219a51a531a7ffd460056ef112e7b695804adc31d65bd6ba2b",
+            "sources": [
+              {
+                "task": "capability",
+                "response_sha256": "6e3d70f67838a3664443b6b5e828890c1aff4dd77a4db8cd494725f12951d9bf"
+              },
+              {
+                "task": "interface",
+                "response_sha256": "82ff497c1ea213a4e232ac5738f20c36e84ed70a3a52dc5b79758d41c74e6338"
+              },
+              {
+                "task": "shape",
+                "response_sha256": "e231205d2ebb8acbe9dade6709c6d71910c64077e523d1a58dc3abf6306afa97"
+              },
+              {
+                "task": "surface",
+                "response_sha256": "cea5192bd16675c79dfed3d85c2b8c4761bd5424d505c06004e18dbe67e3b946"
+              }
+            ]
+          },
+          {
+            "id": "verify",
+            "kind": "verification",
+            "machine": "axm.morphtile.machine.verification",
+            "dependencies": [
+              "assemble"
+            ],
+            "execution": "EXECUTED",
+            "status": "PASS",
+            "packet": {
+              "envelope_version": "0.1",
+              "request_id": "verify-pavilion",
+              "goal": "Check the assembled tile structure",
+              "candidate": {
+                "schema": "morphtile.tile-spec/v0.4",
+                "name": "Signal Pavilion",
+                "form_hints": [
+                  "ui_panel",
+                  "game_asset"
+                ],
+                "facets": {
+                  "mesh": {
+                    "type": "generated",
+                    "source": null,
+                    "data": {
+                      "generator": "recipe",
+                      "vars": {},
+                      "parts": [
+                        {
+                          "repeat": 6,
+                          "as": "i",
+                          "body": [
+                            {
+                              "use": "station",
+                              "with": {
+                                "height": 2.6
+                              },
+                              "pos": [
+                                [
+                                  "+",
+                                  0,
+                                  [
+                                    "*",
+                                    [
+                                      "var",
+                                      "i"
+                                    ],
+                                    1.8
+                                  ]
+                                ],
+                                0,
+                                0
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  "material": {
+                    "type": "generated",
+                    "source": null,
+                    "data": {
+                      "color": [
+                        0.15,
+                        0.3,
+                        0.6
+                      ],
+                      "paint": {
+                        "color": [
+                          [
+                            "if",
+                            [
+                              ">=",
+                              [
+                                "var",
+                                "ny"
+                              ],
+                              0.65
+                            ],
+                            0.95,
+                            0.14
+                          ],
+                          [
+                            "if",
+                            [
+                              ">=",
+                              [
+                                "var",
+                                "ny"
+                              ],
+                              0.65
+                            ],
+                            0.7,
+                            0.28
+                          ],
+                          [
+                            "if",
+                            [
+                              ">=",
+                              [
+                                "var",
+                                "ny"
+                              ],
+                              0.65
+                            ],
+                            0.2,
+                            0.58
+                          ]
+                        ]
+                      }
+                    }
+                  }
+                },
+                "id": "mt_pavilion",
+                "capabilities": [
+                  {
+                    "id": "counter",
+                    "wake": {
+                      "on": "near",
+                      "within": 4,
+                      "hysteresis": 1.5
+                    },
+                    "grants": {
+                      "facets": {
+                        "logic": {
+                          "type": "rule",
+                          "data": {
+                            "vars": {
+                              "count": 7
+                            },
+                            "rules": [
+                              {
+                                "on": "increment",
+                                "do": [
+                                  {
+                                    "set": [
+                                      "count",
+                                      [
+                                        "+",
+                                        [
+                                          "var",
+                                          "count"
+                                        ],
+                                        1
+                                      ]
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "sockets": [
+                        {
+                          "id": "increment",
+                          "kind": "signal",
+                          "dir": "in",
+                          "signal": "increment",
+                          "label": "Increment"
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "view": {
+                  "title": "Signal Pavilion",
+                  "body": [
+                    {
+                      "text": "Approach to wake this pavilion. Its counter survives sleep."
+                    },
+                    {
+                      "value": "count",
+                      "label": "Signals"
+                    },
+                    {
+                      "button": "increment",
+                      "label": "Send a signal"
+                    }
+                  ]
+                },
+                "presentation": {
+                  "mode": "docked",
+                  "dock": "right",
+                  "preferred_size": [
+                    360,
+                    240
+                  ],
+                  "user_adjustable": true
+                }
+              }
+            },
+            "response": {
+              "envelope_version": "0.1",
+              "request_id": "verify-pavilion",
+              "machine": {
+                "id": "axm.morphtile.machine.verification",
+                "version": "0.1.0"
+              },
+              "status": "PASS",
+              "candidate": {
+                "schema": "morphtile.tile-spec/v0.4",
+                "name": "Signal Pavilion",
+                "form_hints": [
+                  "ui_panel",
+                  "game_asset"
+                ],
+                "facets": {
+                  "mesh": {
+                    "type": "generated",
+                    "source": null,
+                    "data": {
+                      "generator": "recipe",
+                      "vars": {},
+                      "parts": [
+                        {
+                          "repeat": 6,
+                          "as": "i",
+                          "body": [
+                            {
+                              "use": "station",
+                              "with": {
+                                "height": 2.6
+                              },
+                              "pos": [
+                                [
+                                  "+",
+                                  0,
+                                  [
+                                    "*",
+                                    [
+                                      "var",
+                                      "i"
+                                    ],
+                                    1.8
+                                  ]
+                                ],
+                                0,
+                                0
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  "material": {
+                    "type": "generated",
+                    "source": null,
+                    "data": {
+                      "color": [
+                        0.15,
+                        0.3,
+                        0.6
+                      ],
+                      "paint": {
+                        "color": [
+                          [
+                            "if",
+                            [
+                              ">=",
+                              [
+                                "var",
+                                "ny"
+                              ],
+                              0.65
+                            ],
+                            0.95,
+                            0.14
+                          ],
+                          [
+                            "if",
+                            [
+                              ">=",
+                              [
+                                "var",
+                                "ny"
+                              ],
+                              0.65
+                            ],
+                            0.7,
+                            0.28
+                          ],
+                          [
+                            "if",
+                            [
+                              ">=",
+                              [
+                                "var",
+                                "ny"
+                              ],
+                              0.65
+                            ],
+                            0.2,
+                            0.58
+                          ]
+                        ]
+                      }
+                    }
+                  }
+                },
+                "id": "mt_pavilion",
+                "capabilities": [
+                  {
+                    "id": "counter",
+                    "wake": {
+                      "on": "near",
+                      "within": 4,
+                      "hysteresis": 1.5
+                    },
+                    "grants": {
+                      "facets": {
+                        "logic": {
+                          "type": "rule",
+                          "data": {
+                            "vars": {
+                              "count": 7
+                            },
+                            "rules": [
+                              {
+                                "on": "increment",
+                                "do": [
+                                  {
+                                    "set": [
+                                      "count",
+                                      [
+                                        "+",
+                                        [
+                                          "var",
+                                          "count"
+                                        ],
+                                        1
+                                      ]
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "sockets": [
+                        {
+                          "id": "increment",
+                          "kind": "signal",
+                          "dir": "in",
+                          "signal": "increment",
+                          "label": "Increment"
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "view": {
+                  "title": "Signal Pavilion",
+                  "body": [
+                    {
+                      "text": "Approach to wake this pavilion. Its counter survives sleep."
+                    },
+                    {
+                      "value": "count",
+                      "label": "Signals"
+                    },
+                    {
+                      "button": "increment",
+                      "label": "Send a signal"
+                    }
+                  ]
+                },
+                "presentation": {
+                  "mode": "docked",
+                  "dock": "right",
+                  "preferred_size": [
+                    360,
+                    240
+                  ],
+                  "user_adjustable": true
+                }
+              },
+              "dependencies": [],
+              "evidence": [
+                {
+                  "kind": "STRUCTURAL",
+                  "status": "PASS"
+                },
+                {
+                  "schema": "axm.morphtile.verification-receipt/v0.1",
+                  "candidate_sha256": "af551e2d7d408538fb81d06cb52a2928207cd3597292a70b58eca35af4751910",
+                  "candidate_digest_encoding": "canonical-json-sorted-keys/v1",
+                  "checks": [
+                    "schema",
+                    "name",
+                    "facets",
+                    "canonical-candidate-hash"
+                  ],
+                  "morph_tile_runtime_executed": false,
+                  "visual_observer_executed": false
+                }
+              ],
+              "warnings": [
+                {
+                  "code": "RUNTIME_AND_VISUAL_NOT_TESTED"
+                }
+              ],
+              "holds": [],
+              "provenance": {},
+              "suggested_missing_capability": null
+            },
+            "packet_sha256": "691ccfcf988fca4a8c7298e1cab30e32091d405faaff34dd435de67b6d2b627b",
+            "response_sha256": "94e8b93694d9149a64c1e96f59eadf32b4463975b2db5cf422e3e74c3c5c54f0",
+            "sources": [
+              {
+                "task": "assemble",
+                "response_sha256": "2f86cbf38db12f219a51a531a7ffd460056ef112e7b695804adc31d65bd6ba2b"
+              }
+            ]
+          }
+        ]
+      },
+      "dependencies": [],
+      "evidence": [
+        {
+          "kind": "ROUTING",
+          "status": "PASS",
+          "check": "complete graph preflight; dependencies first; kind then task id breaks ties; explicit six-machine registry"
+        },
+        {
+          "kind": "CHILD_STATUS_PROPAGATION",
+          "status": "PASS",
+          "check": "FAIL > HOLD > CANDIDATE/PASS; unavailable dependencies block descendants"
+        },
+        {
+          "kind": "TRACE",
+          "status": "PASS",
+          "check": "retained packets and responses use SHA-256 over sorted-key JSON; hashes are identity evidence, not authentication"
+        }
+      ],
+      "warnings": [
+        {
+          "task": "shape",
+          "machine": "axm.morphtile.machine.form",
+          "warning": {
+            "code": "NOT_VISUALLY_VERIFIED"
+          }
+        },
+        {
+          "task": "shape",
+          "machine": "axm.morphtile.machine.form",
+          "warning": {
+            "code": "DEFINITION_RUNTIME_RESOLUTION_REQUIRED"
+          }
+        },
+        {
+          "task": "interface",
+          "machine": "axm.morphtile.machine.interface",
+          "warning": {
+            "code": "TARGET_MUST_EXIST_AND_DECLARE_UI_PANEL"
+          }
+        },
+        {
+          "task": "interface",
+          "machine": "axm.morphtile.machine.interface",
+          "warning": {
+            "code": "CALLER_MUST_PROVE_BINDINGS_MATCH_TARGET"
+          }
+        },
+        {
+          "task": "assemble",
+          "machine": "axm.morphtile.machine.assembly",
+          "warning": {
+            "code": "UPSTREAM_WARNING",
+            "input": 1,
+            "machine": "axm.morphtile.machine.form",
+            "warning": {
+              "code": "NOT_VISUALLY_VERIFIED"
+            }
+          }
+        },
+        {
+          "task": "assemble",
+          "machine": "axm.morphtile.machine.assembly",
+          "warning": {
+            "code": "UPSTREAM_WARNING",
+            "input": 1,
+            "machine": "axm.morphtile.machine.form",
+            "warning": {
+              "code": "DEFINITION_RUNTIME_RESOLUTION_REQUIRED"
+            }
+          }
+        },
+        {
+          "task": "assemble",
+          "machine": "axm.morphtile.machine.assembly",
+          "warning": {
+            "code": "UPSTREAM_WARNING",
+            "input": 4,
+            "machine": "axm.morphtile.machine.interface",
+            "warning": {
+              "code": "TARGET_MUST_EXIST_AND_DECLARE_UI_PANEL"
+            }
+          }
+        },
+        {
+          "task": "assemble",
+          "machine": "axm.morphtile.machine.assembly",
+          "warning": {
+            "code": "UPSTREAM_WARNING",
+            "input": 4,
+            "machine": "axm.morphtile.machine.interface",
+            "warning": {
+              "code": "CALLER_MUST_PROVE_BINDINGS_MATCH_TARGET"
+            }
+          }
+        },
+        {
+          "task": "verify",
+          "machine": "axm.morphtile.machine.verification",
+          "warning": {
+            "code": "RUNTIME_AND_VISUAL_NOT_TESTED"
+          }
+        }
+      ],
+      "holds": [],
+      "provenance": {
+        "caller": "director-example"
+      },
+      "suggested_missing_capability": null
+    },
+    "kit": {
+      "format": "morphtile-kit",
+      "version": "0.4",
+      "name": "Signal Pavilion",
+      "tile": {
+        "id": "mt_pavilion",
+        "kind": "morphtile",
+        "version": "0.1",
+        "name": "Signal Pavilion",
+        "facets": {
+          "mesh": {
+            "type": "generated",
+            "source": null,
+            "data": {
+              "generator": "recipe",
+              "vars": {},
+              "parts": [
+                {
+                  "repeat": 6,
+                  "as": "i",
+                  "body": [
+                    {
+                      "use": "station",
+                      "with": {
+                        "height": 2.6
+                      },
+                      "pos": [
+                        [
+                          "+",
+                          0,
+                          [
+                            "*",
+                            [
+                              "var",
+                              "i"
+                            ],
+                            1.8
+                          ]
+                        ],
+                        0,
+                        0
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "material": {
+            "type": "generated",
+            "source": null,
+            "data": {
+              "color": [
+                0.15,
+                0.3,
+                0.6
+              ],
+              "paint": {
+                "color": [
+                  [
+                    "if",
+                    [
+                      ">=",
+                      [
+                        "var",
+                        "ny"
+                      ],
+                      0.65
+                    ],
+                    0.95,
+                    0.14
+                  ],
+                  [
+                    "if",
+                    [
+                      ">=",
+                      [
+                        "var",
+                        "ny"
+                      ],
+                      0.65
+                    ],
+                    0.7,
+                    0.28
+                  ],
+                  [
+                    "if",
+                    [
+                      ">=",
+                      [
+                        "var",
+                        "ny"
+                      ],
+                      0.65
+                    ],
+                    0.2,
+                    0.58
+                  ]
+                ]
+              }
+            }
+          },
+          "behavior": {
+            "type": "none",
+            "data": {}
+          },
+          "logic": {
+            "type": "none",
+            "data": {}
+          },
+          "connect": {
+            "sockets": [],
+            "bridges": [],
+            "place": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "form_hints": [
+          "ui_panel",
+          "game_asset"
+        ],
+        "provenance": {
+          "created_by": "axm.morphtile.machine.assembly",
+          "bridges": [],
+          "sha256": "fbda374aed9b58071b425ed30ce7013a38a80ac554b235eb2a41cf518a4da8fb"
+        },
+        "state": {
+          "version": 1,
+          "mutable": true,
+          "last_transform": null
+        },
+        "capabilities": [
+          {
+            "id": "counter",
+            "wake": {
+              "on": "near",
+              "within": 4,
+              "hysteresis": 1.5
+            },
+            "grants": {
+              "facets": {
+                "logic": {
+                  "type": "rule",
+                  "data": {
+                    "vars": {
+                      "count": 7
+                    },
+                    "rules": [
+                      {
+                        "on": "increment",
+                        "do": [
+                          {
+                            "set": [
+                              "count",
+                              [
+                                "+",
+                                [
+                                  "var",
+                                  "count"
+                                ],
+                                1
+                              ]
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              },
+              "sockets": [
+                {
+                  "id": "increment",
+                  "kind": "signal",
+                  "dir": "in",
+                  "signal": "increment",
+                  "label": "Increment"
+                }
+              ]
+            }
+          }
+        ],
+        "view": {
+          "title": "Signal Pavilion",
+          "body": [
+            {
+              "text": "Approach to wake this pavilion. Its counter survives sleep."
+            },
+            {
+              "value": "count",
+              "label": "Signals"
+            },
+            {
+              "button": "increment",
+              "label": "Send a signal"
+            }
+          ]
+        },
+        "presentation": {
+          "mode": "docked",
+          "dock": "right",
+          "preferred_size": [
+            360,
+            240
+          ],
+          "user_adjustable": true
+        }
+      },
+      "defs": {
+        "station": {
+          "id": "station",
+          "name": "Reusable signal station",
+          "created_by": "director-fixture",
+          "body": {
+            "facets": {
+              "mesh": {
+                "type": "generated",
+                "source": null,
+                "data": {
+                  "generator": "recipe",
+                  "vars": {
+                    "height": 2
+                  },
+                  "parts": [
+                    {
+                      "shape": "cylinder",
+                      "size": [
+                        0.28,
+                        [
+                          "var",
+                          "height"
+                        ],
+                        0.28
+                      ],
+                      "pos": [
+                        0,
+                        [
+                          "half",
+                          [
+                            "var",
+                            "height"
+                          ]
+                        ],
+                        0
+                      ]
+                    },
+                    {
+                      "shape": "box",
+                      "size": [
+                        1.2,
+                        0.18,
+                        1.2
+                      ],
+                      "pos": [
+                        0,
+                        0.09,
+                        0
+                      ]
+                    },
+                    {
+                      "shape": "cone",
+                      "size": [
+                        1.1,
+                        0.7,
+                        1.1
+                      ],
+                      "pos": [
+                        0,
+                        [
+                          "+",
+                          [
+                            "var",
+                            "height"
+                          ],
+                          0.35
+                        ],
+                        0
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "words": {
+        "half": {
+          "name": "half",
+          "args": [
+            "x"
+          ],
+          "body": [
+            "/",
+            [
+              "var",
+              "x"
+            ],
+            2
+          ],
+          "note": "Reusable midpoint expression"
+        }
+      },
+      "expect": {
+        "sha256": "180fdfd0a75beede6dc4053c879a274c37fe5e90d3ab2ff63f808685f5874ec7",
+        "defs": 1,
+        "words": 1,
+        "missing": []
+      }
+    },
+    "kit_build": {
+      "status": "CANDIDATE",
+      "source_closure_hash": {
+        "algorithm": "sha256",
+        "canonicalization": "sorted-key-json/v1",
+        "scope": "candidate+dependencies+world_requirements",
+        "value": "ebb335ffe3ebf18c72dd5aad51eda0c415586cfbcbfa6785e0ba4b793ec45fb8"
+      },
+      "runtime_contract": {
+        "engine_version": "0.4",
+        "kit_format": "morphtile-kit",
+        "kit_version": "0.4"
+      },
+      "evidence": [
+        {
+          "kind": "TILE",
+          "status": "PASS",
+          "check": "assembly candidate materialized and validateTile accepted it"
+        },
+        {
+          "kind": "KIT_HASH",
+          "status": "PASS",
+          "check": "kit expect.sha256 uses the supplied MorphTile runtime hashOf over tile + defs + words"
+        },
+        {
+          "kind": "KIT_IMPORT",
+          "status": "PASS",
+          "check": "fresh-world importKit returned READY without overwrite or partial mode"
+        }
+      ],
+      "holds": []
+    },
+    "kit_verification": {
+      "status": "PASS",
+      "checked": [
+        "envelope",
+        "payload-hash",
+        "closure-counts",
+        "tile-validation",
+        "fresh-import-ready",
+        "fresh-import-evidence",
+        "import-analysis-no-mutation",
+        "semantic-tamper-rejection",
+        "tamper-analysis-no-mutation"
+      ],
+      "errors": [],
+      "receipt": {
+        "schema": "axm.morphtile.kit-conformance-receipt/v0.1",
+        "runtime_version": "0.4",
+        "source_closure_hash": {
+          "algorithm": "sha256",
+          "canonicalization": "sorted-key-json/v1",
+          "scope": "candidate+dependencies+world_requirements",
+          "value": "ebb335ffe3ebf18c72dd5aad51eda0c415586cfbcbfa6785e0ba4b793ec45fb8"
+        },
+        "expected_payload_sha256": "180fdfd0a75beede6dc4053c879a274c37fe5e90d3ab2ff63f808685f5874ec7",
+        "observed_payload_sha256": "180fdfd0a75beede6dc4053c879a274c37fe5e90d3ab2ff63f808685f5874ec7",
+        "defs": 1,
+        "words": 1,
+        "fresh_import_status": "READY",
+        "fresh_import_evidence": "verified_payload_sha256",
+        "import_analysis_mutated_receiver": false,
+        "tamper_status": "HOLD_HASH_MISMATCH",
+        "tamper_analysis_mutated_receiver": false
+      }
+    }
+  },
+  "dependencies": [],
+  "evidence": [
+    {
+      "kind": "CREATION_PIPELINE",
+      "status": "PASS",
+      "check": "selected assembly, candidate verification, kit materialization and independent kit verification completed; runtime behavior and visuals require their own evidence"
+    }
+  ],
+  "warnings": [
+    {
+      "task": "shape",
+      "machine": "axm.morphtile.machine.form",
+      "warning": {
+        "code": "NOT_VISUALLY_VERIFIED"
+      }
+    },
+    {
+      "task": "shape",
+      "machine": "axm.morphtile.machine.form",
+      "warning": {
+        "code": "DEFINITION_RUNTIME_RESOLUTION_REQUIRED"
+      }
+    },
+    {
+      "task": "interface",
+      "machine": "axm.morphtile.machine.interface",
+      "warning": {
+        "code": "TARGET_MUST_EXIST_AND_DECLARE_UI_PANEL"
+      }
+    },
+    {
+      "task": "interface",
+      "machine": "axm.morphtile.machine.interface",
+      "warning": {
+        "code": "CALLER_MUST_PROVE_BINDINGS_MATCH_TARGET"
+      }
+    },
+    {
+      "task": "assemble",
+      "machine": "axm.morphtile.machine.assembly",
+      "warning": {
+        "code": "UPSTREAM_WARNING",
+        "input": 1,
+        "machine": "axm.morphtile.machine.form",
+        "warning": {
+          "code": "NOT_VISUALLY_VERIFIED"
+        }
+      }
+    },
+    {
+      "task": "assemble",
+      "machine": "axm.morphtile.machine.assembly",
+      "warning": {
+        "code": "UPSTREAM_WARNING",
+        "input": 1,
+        "machine": "axm.morphtile.machine.form",
+        "warning": {
+          "code": "DEFINITION_RUNTIME_RESOLUTION_REQUIRED"
+        }
+      }
+    },
+    {
+      "task": "assemble",
+      "machine": "axm.morphtile.machine.assembly",
+      "warning": {
+        "code": "UPSTREAM_WARNING",
+        "input": 4,
+        "machine": "axm.morphtile.machine.interface",
+        "warning": {
+          "code": "TARGET_MUST_EXIST_AND_DECLARE_UI_PANEL"
+        }
+      }
+    },
+    {
+      "task": "assemble",
+      "machine": "axm.morphtile.machine.assembly",
+      "warning": {
+        "code": "UPSTREAM_WARNING",
+        "input": 4,
+        "machine": "axm.morphtile.machine.interface",
+        "warning": {
+          "code": "CALLER_MUST_PROVE_BINDINGS_MATCH_TARGET"
+        }
+      }
+    },
+    {
+      "task": "verify",
+      "machine": "axm.morphtile.machine.verification",
+      "warning": {
+        "code": "RUNTIME_AND_VISUAL_NOT_TESTED"
+      }
+    }
+  ],
+  "holds": [],
+  "provenance": {
+    "caller": "director-example"
+  },
+  "suggested_missing_capability": null
+}
