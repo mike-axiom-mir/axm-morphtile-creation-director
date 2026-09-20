@@ -8,11 +8,63 @@ permissions:
   contents: read
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
+  verify:
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            node: 20
+          - os: windows-latest
+            node: 22
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: mike-axiom-mir/axm-morphtile-machine-form
+          ref: ec3072738d9b5ab371a62852132dd6c14af09d5a
+          path: .runtime/form
+      - uses: actions/checkout@v4
+        with:
+          repository: mike-axiom-mir/axm-morphtile-machine-surface
+          ref: ac8e551fb9e8ba266024fcbca473b8491996ea63
+          path: .runtime/surface
+      - uses: actions/checkout@v4
+        with:
+          repository: mike-axiom-mir/axm-morphtile-machine-capability
+          ref: 0e0f60eb477d8cb20f8dbe259f546fa7c5b36e24
+          path: .runtime/capability
+      - uses: actions/checkout@v4
+        with:
+          repository: mike-axiom-mir/axm-morphtile-machine-interface
+          ref: 260e45599c91cbcb0ec8a5a54153323e4e5d0c6a
+          path: .runtime/interface
+      - uses: actions/checkout@v4
+        with:
+          repository: mike-axiom-mir/axm-morphtile-machine-assembly
+          ref: af15bf3e566f77fcaba269f5703eb06b99aba9cb
+          path: .runtime/assembly
+      - uses: actions/checkout@v4
+        with:
+          repository: mike-axiom-mir/axm-morphtile-machine-verification
+          ref: a9c4a52040ef2f1950578cb0cc9e3e4cdcd5a594
+          path: .runtime/verification
+      - uses: actions/checkout@v4
+        with:
+          repository: mike-axiom-mir/axm-morphtile
+          ref: ef2b3c6986aa1a333247feffc43a8443f17239d0
+          path: .runtime/core
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: ${{ matrix.node }}
       - run: npm test
+      - run: npm run test:integration
+        env:
+          MORPHTILE_ECOSYSTEM_ROOT: ${{ github.workspace }}/.runtime
+      - run: npm run prove -- .proof
+        env:
+          MORPHTILE_ECOSYSTEM_ROOT: ${{ github.workspace }}/.runtime
+      - uses: actions/upload-artifact@v4
+        with:
+          name: creation-${{ matrix.os }}-node${{ matrix.node }}
+          path: .proof

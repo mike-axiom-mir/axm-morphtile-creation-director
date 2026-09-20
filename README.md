@@ -1,31 +1,59 @@
 # MorphTile Creation Director
 
-Deterministically routes explicit goal tasks through an explicit compatible-machine registry and returns an inspectable report.
+An explicit creation plan connects independent MorphTile machines into a reproducible pipeline. Named tasks run in dependency order; Assembly receives complete producer envelopes, and Verification receives the assembled candidate. Every executed packet and response remains inspectable with its content hash.
 
-## Boundary answers
+`src/` has zero runtime dependencies outside Node, no I/O and no sibling imports. The host supplies the registry and optional kit adapters. MorphTile core never depends on this repository.
 
-1. **What it does:** Deterministically routes explicit goal tasks through an explicit compatible-machine registry and returns an inspectable report.
-2. **What it does not own:** Artifact generation internals, automatic canon, verification bypass, private chat memory, or fabricated capabilities.
-3. **What it accepts:** axm.morphtile.goal-request/v0.1 with explicit tasks and packets.
-4. **What it produces:** An axm.morphtile.director-report/v0.1 candidate.
-5. **MorphTile interaction:** output goes through MorphTile's public contracts and clone → plan → commit → receipt → rollback path. MorphTile does not depend on this repository.
-6. **Evidence:** Deterministic routing and missing-machine HOLD tests.
-7. **When it cannot satisfy a request:** A missing requested machine returns HOLD_MACHINE_MISSING.
+## Use
 
-## Run
+```js
+const { run } = require('./src');
+const { createKit } = require('./src/creation');
 
-    npm test
+// Host-supplied public machine entry points; nothing is discovered or installed.
+const registry = {
+  form: { ...Form.MACHINE, run: Form.run },
+  surface: { ...Surface.MACHINE, run: Surface.run },
+  capability: { ...Capability.MACHINE, run: Capability.run },
+  interface: { ...Interface.MACHINE, run: Interface.run },
+  assembly: { ...Assembly.MACHINE, run: Assembly.run },
+  verification: { ...Verification.MACHINE, run: Verification.run }
+};
+const report = run(plan, registry);
+const creation = createKit(plan, registry, {
+  assembly_task: 'assemble', verification_task: 'verify',
+  runtime: MorphTile,
+  materializeKit: AssemblyKit.materializeKit,
+  verifyKit: VerificationKit.verifyKitCandidate
+});
+// creation.status remains CANDIDATE. A successful portable artifact is
+// creation.candidate.kit; normal MorphTile import/clone/plan/commit rules apply.
+```
 
-Node 18 or later; zero runtime dependencies; no secrets or network required.
+See [the complete plan](fixtures/request.creation.json) and [the plan contract](docs/EXPLICIT_PLANS.md).
 
-The original ecosystem foundation instruction is preserved verbatim in `docs/FOUNDATION_BRIEF.txt`; this repository does not turn its future goals into implementation claims.
+## Reproduce
 
-## Truth boundary
+```sh
+npm test
+MORPHTILE_ECOSYSTEM_ROOT=/path/to/pinned-checkouts npm run test:integration
+MORPHTILE_ECOSYSTEM_ROOT=/path/to/pinned-checkouts npm run prove -- /empty/output/folder
+```
 
-- IMPLEMENTED: the tiny adapter and local envelope used by the fixtures.
-- TESTED: the claims named by the local test files.
-- EXPERIMENTAL: envelope v0.1 and every candidate schema in this foundation.
-- NOT TESTED: compatibility beyond MorphTile commit 13d83a2b2c0d12644442d3d9e45bcbe0af19876a.
-- HELD: No real sibling invocation, decomposition model, assembly, or verification execution yet.
+The optional test/proof host requires explicit clean checkouts in `core/`, `form/`, `surface/`, `capability/`, `interface/`, `assembly/` and `verification/`. It checks actual Git identities against [integration-sources.json](fixtures/integration-sources.json). It never downloads packages or discovers sibling directories. The CI workflow shows the exact checkout layout. `prove` writes only to the explicitly supplied empty folder; without a folder it prints the proof.
 
-This is a foundation, not evidence that MorphTile can autonomously manufacture MorphTile.
+## What was exercised
+
+Twenty-one routing/contract tests and six integration tests cover real six-machine composition, exact repeat output, closure/provenance, dependency failures, wrong response identities, input mutation, kit hash verification, semantic tampering, runtime geometry, named UI actions, near wake/sleep, replay, fresh-world portability and immediate rollback.
+
+The proof tile retains one reusable definition and one word, builds six stations with 1,236 triangles, and has a counter that survives sleep. Both rendered angles were inspected at 720 × 420 in the native rasterizer. This demonstrates the fixture, not general aesthetic quality.
+
+[Current proof](evidence/creation-integrated-2026-09-20/proof.json) · [Portable kit](evidence/creation-integrated-2026-09-20/pavilion-kit.json) · [Full creation trace](evidence/creation-integrated-2026-09-20/creation.json)
+
+![Six stations produced by the explicit machine plan](evidence/creation-integrated-2026-09-20/pavilion.png)
+
+## Boundary
+
+Plan/report formats remain experimental. Goals describe explicit work; there is no natural-language decomposition model, automatic discovery, autonomous research, network execution, release or CANON authority. General machine determinism depends on the supplied synchronous callbacks. Their structural and visual warnings remain visible. A structural PASS is never upgraded to runtime or visual evidence by the Director.
+
+The original foundation brief and handoff remain historical records. Current contracts and evidence are described here and in [STATUS.md](STATUS.md). Licence: PolyForm Noncommercial 1.0.0; see [LICENSE](LICENSE).

@@ -1,0 +1,313 @@
+{
+  "format": "morphtile-kit",
+  "version": "0.4",
+  "name": "Signal Pavilion",
+  "tile": {
+    "id": "mt_pavilion",
+    "kind": "morphtile",
+    "version": "0.1",
+    "name": "Signal Pavilion",
+    "facets": {
+      "mesh": {
+        "type": "generated",
+        "source": null,
+        "data": {
+          "generator": "recipe",
+          "vars": {},
+          "parts": [
+            {
+              "repeat": 6,
+              "as": "i",
+              "body": [
+                {
+                  "use": "station",
+                  "with": {
+                    "height": 2.6
+                  },
+                  "pos": [
+                    [
+                      "+",
+                      0,
+                      [
+                        "*",
+                        [
+                          "var",
+                          "i"
+                        ],
+                        1.8
+                      ]
+                    ],
+                    0,
+                    0
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "material": {
+        "type": "generated",
+        "source": null,
+        "data": {
+          "color": [
+            0.15,
+            0.3,
+            0.6
+          ],
+          "paint": {
+            "color": [
+              [
+                "if",
+                [
+                  ">=",
+                  [
+                    "var",
+                    "ny"
+                  ],
+                  0.65
+                ],
+                0.95,
+                0.14
+              ],
+              [
+                "if",
+                [
+                  ">=",
+                  [
+                    "var",
+                    "ny"
+                  ],
+                  0.65
+                ],
+                0.7,
+                0.28
+              ],
+              [
+                "if",
+                [
+                  ">=",
+                  [
+                    "var",
+                    "ny"
+                  ],
+                  0.65
+                ],
+                0.2,
+                0.58
+              ]
+            ]
+          }
+        }
+      },
+      "behavior": {
+        "type": "none",
+        "data": {}
+      },
+      "logic": {
+        "type": "none",
+        "data": {}
+      },
+      "connect": {
+        "sockets": [],
+        "bridges": [],
+        "place": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    "form_hints": [
+      "ui_panel",
+      "game_asset"
+    ],
+    "provenance": {
+      "created_by": "axm.morphtile.machine.assembly",
+      "bridges": [],
+      "sha256": "fbda374aed9b58071b425ed30ce7013a38a80ac554b235eb2a41cf518a4da8fb"
+    },
+    "state": {
+      "version": 1,
+      "mutable": true,
+      "last_transform": null
+    },
+    "capabilities": [
+      {
+        "id": "counter",
+        "wake": {
+          "on": "near",
+          "within": 4,
+          "hysteresis": 1.5
+        },
+        "grants": {
+          "facets": {
+            "logic": {
+              "type": "rule",
+              "data": {
+                "vars": {
+                  "count": 7
+                },
+                "rules": [
+                  {
+                    "on": "increment",
+                    "do": [
+                      {
+                        "set": [
+                          "count",
+                          [
+                            "+",
+                            [
+                              "var",
+                              "count"
+                            ],
+                            1
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "sockets": [
+            {
+              "id": "increment",
+              "kind": "signal",
+              "dir": "in",
+              "signal": "increment",
+              "label": "Increment"
+            }
+          ]
+        }
+      }
+    ],
+    "view": {
+      "title": "Signal Pavilion",
+      "body": [
+        {
+          "text": "Approach to wake this pavilion. Its counter survives sleep."
+        },
+        {
+          "value": "count",
+          "label": "Signals"
+        },
+        {
+          "button": "increment",
+          "label": "Send a signal"
+        }
+      ]
+    },
+    "presentation": {
+      "mode": "docked",
+      "dock": "right",
+      "preferred_size": [
+        360,
+        240
+      ],
+      "user_adjustable": true
+    }
+  },
+  "defs": {
+    "station": {
+      "id": "station",
+      "name": "Reusable signal station",
+      "created_by": "director-fixture",
+      "body": {
+        "facets": {
+          "mesh": {
+            "type": "generated",
+            "source": null,
+            "data": {
+              "generator": "recipe",
+              "vars": {
+                "height": 2
+              },
+              "parts": [
+                {
+                  "shape": "cylinder",
+                  "size": [
+                    0.28,
+                    [
+                      "var",
+                      "height"
+                    ],
+                    0.28
+                  ],
+                  "pos": [
+                    0,
+                    [
+                      "half",
+                      [
+                        "var",
+                        "height"
+                      ]
+                    ],
+                    0
+                  ]
+                },
+                {
+                  "shape": "box",
+                  "size": [
+                    1.2,
+                    0.18,
+                    1.2
+                  ],
+                  "pos": [
+                    0,
+                    0.09,
+                    0
+                  ]
+                },
+                {
+                  "shape": "cone",
+                  "size": [
+                    1.1,
+                    0.7,
+                    1.1
+                  ],
+                  "pos": [
+                    0,
+                    [
+                      "+",
+                      [
+                        "var",
+                        "height"
+                      ],
+                      0.35
+                    ],
+                    0
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "words": {
+    "half": {
+      "name": "half",
+      "args": [
+        "x"
+      ],
+      "body": [
+        "/",
+        [
+          "var",
+          "x"
+        ],
+        2
+      ],
+      "note": "Reusable midpoint expression"
+    }
+  },
+  "expect": {
+    "sha256": "180fdfd0a75beede6dc4053c879a274c37fe5e90d3ab2ff63f808685f5874ec7",
+    "defs": 1,
+    "words": 1,
+    "missing": []
+  }
+}

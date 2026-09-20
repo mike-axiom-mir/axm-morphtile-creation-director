@@ -1,8 +1,12 @@
 # Roadmap
 
-1. Route the four specialist fixtures into Assembly and Verification, preserve every intermediate packet, and return the first end-to-end evidence handoff.
-2. Add negative and budget fixtures discovered by that work.
-3. Keep every candidate inspectable and every unsupported request explicit.
-4. Re-test before widening the declared MorphTile compatibility range.
+The foundation's first goal is now exercised: four real producers feed Assembly, then Verification, and optional public kit adapters produce a portable candidate with an inspectable end-to-end trace.
 
-Do not add speculative breadth merely to make the repository look complete.
+Useful next work requires separate evidence:
+
+1. Explicit product-goal decomposition into reusable plan recipes, without guessing missing requirements.
+2. Reuse of prior task results keyed by actual request, machine and dependency identities, with correct invalidation.
+3. Broader behavioral and visual acceptance through Verification, retaining the difference between structural and observed claims.
+4. Additional Assembly closure contracts as independently reviewed specialist versions become available.
+
+The Director coordinates those capabilities; it does not absorb specialist implementations. There is no forced improvement quota or automatic canon.
