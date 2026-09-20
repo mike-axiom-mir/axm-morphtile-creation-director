@@ -20,6 +20,26 @@ test("holds when a requested machine is missing", () => {
   assert.equal(out.holds[0].code, "HOLD_MACHINE_MISSING");
 });
 
+test("fails closed on task kinds outside the six-machine MorphTile team even when a registry entry exists", () => {
+  let calls = 0;
+  const localRegistry = {
+    ...registry,
+    wildcard: { id: "fixture.wildcard", run: () => { calls += 1; return { status: "PASS" }; } }
+  };
+  const out = run({ ...request, request_id: "director-unsupported-kind", tasks: [{ kind: "wildcard", packet: {} }] }, localRegistry);
+  assert.equal(out.status, "HOLD");
+  assert.equal(out.holds[0].code, "HOLD_MACHINE_KIND_UNSUPPORTED");
+  assert.deepEqual(out.holds[0].allowed_kinds, ["form", "surface", "capability", "interface", "assembly", "verification"]);
+  assert.equal(calls, 0, "unsupported registry entries must never be invoked");
+});
+
+test("holds malformed task entries without invoking registry code", () => {
+  const out = run({ ...request, request_id: "director-malformed-task", tasks: [null] }, registry);
+  assert.equal(out.status, "HOLD");
+  assert.equal(out.holds[0].code, "HOLD_MACHINE_KIND_UNSUPPORTED");
+  assert.equal(out.holds[0].kind, null);
+});
+
 test("propagates a child HOLD instead of claiming a clean candidate", () => {
   const localRegistry = {
     ...registry,
