@@ -81,7 +81,10 @@ test("missing definition closure and explicit surface mistakes are preserved as 
   const missing = copy(fixture); missing.tasks.find(t => t.id === "assemble").packet.world_requirements.definitions = {};
   const held = createKit(missing, env.registry, env.adapters);
   assert.equal(held.status, "HOLD"); assert.equal(held.candidate.kit, null);
-  assert.equal(held.candidate.kit_build.holds[0].code, "HOLD_KIT_DEFINITION_MISSING");
+  const assembly = held.candidate.report.candidate.route.find(t => t.id === "assemble");
+  assert.equal(assembly.response.holds[0].code, "HOLD_DEFINITION_CLOSURE_INCOMPLETE");
+  assert.deepEqual(assembly.response.holds[0].missing, ["station"]);
+  assert.equal(held.candidate.kit_build, undefined, "Assembly-level definition closure HOLD must block kit materialization entirely");
   const bad = copy(fixture); bad.tasks.find(t => t.id === "surface").packet.intent.surface_rule = false;
   const failed = createKit(bad, env.registry, env.adapters);
   assert.equal(failed.status, "HOLD"); assert.equal(failed.candidate.kit, null);
