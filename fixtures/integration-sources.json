@@ -6,7 +6,7 @@
   },
   "surface": {
     "repository": "mike-axiom-mir/axm-morphtile-machine-surface",
-    "commit": "9d6d83fe9c898b4034d1f74685ca1744c8cd55e9",
+    "commit": "191069a6dfbcfdb766128e97fa629f4ca7921be3",
     "entry": "src/index.js"
   },
   "capability": {
@@ -16,22 +16,22 @@
   },
   "interface": {
     "repository": "mike-axiom-mir/axm-morphtile-machine-interface",
-    "commit": "77e833790358514c98e27cfcde6f5ab24c235264",
+    "commit": "3c715d8aa0138472000472d584f990a88a543ecf",
     "entry": "src/index.js"
   },
   "assembly": {
     "repository": "mike-axiom-mir/axm-morphtile-machine-assembly",
-    "commit": "5e8c37ce1423bfd0e18a33105c813e4f9689fd5b",
+    "commit": "3941fba9254f42c9856a9fcc1598180b2696437f",
     "entry": "src/index.js"
   },
   "verification": {
     "repository": "mike-axiom-mir/axm-morphtile-machine-verification",
-    "commit": "8d813eacc5f65862eec6aa889ebb7ccec7a18fe3",
+    "commit": "d7bfab2cc8d48f6757fde6d053ee31a9ad29605e",
     "entry": "src/index.js"
   },
   "core": {
     "repository": "mike-axiom-mir/axm-morphtile",
-    "commit": "ef2b3c6986aa1a333247feffc43a8443f17239d0",
+    "commit": "26b89a77f6a90715a6742dc4d084008ba63731b6",
     "entry": "core/morphtile.js"
   }
 }
