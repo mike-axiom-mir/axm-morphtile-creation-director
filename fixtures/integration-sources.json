@@ -6,7 +6,7 @@
   },
   "surface": {
     "repository": "mike-axiom-mir/axm-morphtile-machine-surface",
-    "commit": "eece29f72c15cbd591ce1cd816d3ea9f3aeb9bb1",
+    "commit": "895c0330422e9639cac2308da38821ac44942ad9",
     "entry": "src/index.js"
   },
   "capability": {
