@@ -26,7 +26,7 @@
   },
   "verification": {
     "repository": "mike-axiom-mir/axm-morphtile-machine-verification",
-    "commit": "84e47fd8826dcdf83a3c701389990999c40913b0",
+    "commit": "c1d98099ce93762759e9050c2e7b82a3faab3b91",
     "entry": "src/index.js"
   },
   "core": {
