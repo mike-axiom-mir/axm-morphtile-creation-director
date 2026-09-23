@@ -16,17 +16,17 @@
   },
   "interface": {
     "repository": "mike-axiom-mir/axm-morphtile-machine-interface",
-    "commit": "8c0559abfd705cd7437b94f5840902933eb3ec47",
+    "commit": "e89b091d490ea8cf7dad39cd5106e60da2cce4d8",
     "entry": "src/index.js"
   },
   "assembly": {
     "repository": "mike-axiom-mir/axm-morphtile-machine-assembly",
-    "commit": "ac4a7d4234a8b92eb06fd10d4ceb15dd393daefa",
+    "commit": "81fb8213ebfc04ba25be762d04395e6b162fe18e",
     "entry": "src/index.js"
   },
   "verification": {
     "repository": "mike-axiom-mir/axm-morphtile-machine-verification",
-    "commit": "c18d8f2a542e7fe305b7ad38c5913ea1f1a2b578",
+    "commit": "1c23842464b59dc75985d6dd2f244dbd78199666",
     "entry": "src/index.js"
   },
   "core": {
