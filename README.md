@@ -57,3 +57,7 @@ The proof tile retains one reusable definition and one word, builds six stations
 Plan/report formats remain experimental. Goals describe explicit work; there is no natural-language decomposition model, automatic discovery, autonomous research, network execution, release or CANON authority. General machine determinism depends on the supplied synchronous callbacks. Their structural and visual warnings remain visible. A structural PASS is never upgraded to runtime or visual evidence by the Director.
 
 The original foundation brief and handoff remain historical records. Current contracts and evidence are described here and in [STATUS.md](STATUS.md). Licence: PolyForm Noncommercial 1.0.0; see [LICENSE](LICENSE).
+
+## Reusable simulation method
+
+[Simulation experience and reuse](docs/SIMULATION_EXPERIENCE_REUSE.md) connects the shared method to this repository, with existing machinery, proposed experiments and explicit evidence limits.
